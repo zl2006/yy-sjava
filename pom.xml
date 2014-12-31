@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.yy</groupId>
+		<artifactId>home</artifactId>
+		<version>1.0</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+    	<artifactId>framework</artifactId>
+    	<packaging>pom</packaging>
+    	<name>framework</name>
+
+	<!--模块声明-->
+	<modules>
+		<module>./framework-basedata</module>			<!--J2EE框架基础数据类-->
+		<module>./framework-webframe</module>			<!--J2EE框架web工程基础-->
+		<module>./framework-document</module>			<!--J2EE框架服务文档化-->
+		<module>./framework-util</module>			<!--J2EE框架工具包-->	
+	</modules>
+
+</project>
