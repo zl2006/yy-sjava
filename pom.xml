@@ -5,7 +5,7 @@
 		<groupId>org.yy</groupId>
 		<artifactId>home</artifactId>
 		<version>1.0</version>
-		<relativePath>../pom.xml</relativePath>
+		<relativePath>../yy-home/pom.xml</relativePath>
 	</parent>
     	<artifactId>framework</artifactId>
     	<packaging>pom</packaging>
