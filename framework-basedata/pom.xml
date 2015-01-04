@@ -14,10 +14,10 @@
 	<name>framework-basedata</name>
 
 	<dependencies>
-		<dependency>
+		<dependency><!-- 元注解缓存 -->
 			<groupId>com.google.code.simple-spring-memcached</groupId>
 			<artifactId>xmemcached-provider</artifactId>
-			<scope>provided</scope> 
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 </project>

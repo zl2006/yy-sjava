@@ -13,9 +13,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.yy.framework.base.reflect.ClassPathScanHandler;
 import org.yy.framework.document.desc.ModelDesc;
 import org.yy.framework.document.desc.ServiceDesc;
+import org.yy.framework.util.reflect.ClassPathScanHandler;
 
 /**
 * 服务化文档生成器

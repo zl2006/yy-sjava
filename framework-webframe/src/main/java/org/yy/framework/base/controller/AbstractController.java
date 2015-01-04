@@ -46,11 +46,14 @@ import static org.yy.framework.basedata.Constants.*;
  */
 public abstract class AbstractController {
     
+    /**
+     * 模块名称，一般为页面路径，如：/moduleName/add.jsp    , /useradmin/add.jsp
+     */
     protected String moduleName;
     
     protected abstract void setModuleName();
     
-    public AbstractController(){
+    public AbstractController() {
         setModuleName();
     }
     
@@ -70,7 +73,7 @@ public abstract class AbstractController {
      * @param message
      *            描述
      * @param errors
-     *            错误消息
+     *            错误消息, 可以字符串或对象
      */
     private ModelAndView processResult(String flag, String code, String view, Object result, Object params,
         String message, Object errors) {
