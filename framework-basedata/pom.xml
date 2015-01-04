@@ -16,8 +16,8 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.google.code.simple-spring-memcached</groupId>
-			<artifactId>spring-cache</artifactId>
-			<scope>provided</scope>
+			<artifactId>xmemcached-provider</artifactId>
+			<scope>provided</scope> 
 		</dependency>
 	</dependencies>
 </project>
