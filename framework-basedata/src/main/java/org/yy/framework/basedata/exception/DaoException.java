@@ -30,37 +30,12 @@ public class DaoException extends RuntimeException {
     
     /**
      * 构造函数
-     * @param message 异常消息
-     */
-    public DaoException(String message) {
-        super(message);
-    }
-    
-    /**
-     * 构造函数
      * @param code 异常编码
      * @param message 异常消息
      */
     public DaoException(String code, String message) {
         super(message);
         this.code = code;
-    }
-    
-    /**
-     * 构造函数
-     * @param ex 异常
-     */
-    public DaoException(Throwable ex) {
-        super(ex);
-    }
-    
-    /**
-     * 构造函数
-     * @param message 异常消息
-     * @param ex 异常
-     */
-    public DaoException(String message, Throwable ex) {
-        super(message, ex);
     }
     
     /**
@@ -78,7 +53,4 @@ public class DaoException extends RuntimeException {
         return code;
     }
     
-    public void setCode(String code) {
-        this.code = code;
-    }
 }

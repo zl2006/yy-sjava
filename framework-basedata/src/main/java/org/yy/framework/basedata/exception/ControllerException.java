@@ -5,7 +5,6 @@
 * 修 改 人:  zhouliang
 * 修改时间:  2012-9-11
 */
-
 package org.yy.framework.basedata.exception;
 
 /**
@@ -28,37 +27,12 @@ public class ControllerException extends Exception {
     
     /**
      * 构造函数
-     * @param message 异常消息
-     */
-    public ControllerException(String message) {
-        super(message);
-    }
-    
-    /**
-     * 构造函数
      * @param code 异常编码
      * @param message 异常消息
      */
     public ControllerException(String code, String message) {
         super(message);
         this.code = code;
-    }
-    
-    /**
-     * 构造函数
-     * @param ex 异常
-     */
-    public ControllerException(Throwable ex) {
-        super(ex);
-    }
-    
-    /**
-     * 构造函数
-     * @param message 异常消息
-     * @param ex 异常
-     */
-    public ControllerException(String message, Throwable ex) {
-        super(message, ex);
     }
     
     /**
@@ -76,7 +50,4 @@ public class ControllerException extends Exception {
         return code;
     }
     
-    public void setCode(String code) {
-        this.code = code;
-    }
 }

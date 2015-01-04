@@ -21,9 +21,6 @@ import com.google.code.ssm.api.CacheKeyMethod;
  */
 public abstract class AbstractQueryDto implements Serializable {
     
-    /**
-    * 注释内容
-    */
     private static final long serialVersionUID = 5358612476304143534L;
     
     /**
@@ -70,9 +67,12 @@ public abstract class AbstractQueryDto implements Serializable {
         return true;
     }
     
+    /**
+     * 列表查询时，此方法的返回值将做为缓存的主键
+     */
     @CacheKeyMethod
-    public String cacheMethod(){
-        return String.valueOf(  this.hashCode() );
+    public String cacheMethod() {
+        return String.valueOf(this.hashCode());
     }
     
 }

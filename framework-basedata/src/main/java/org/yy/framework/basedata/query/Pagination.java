@@ -18,13 +18,11 @@ import java.io.Serializable;
  * @since  [framework-basedata/1.0]
  */
 public class Pagination implements Serializable {
-    /**
-     * 
-     */
+    
     private static final long serialVersionUID = 3004917241397351782L;
     
     // 总共的数据量
-    private int total;
+    private int total = 0;
     
     // 每页显示多少条
     private int pageSize = 10;
@@ -32,11 +30,7 @@ public class Pagination implements Serializable {
     // 当前是第几页
     private int index = 0;
     
-    /**
-     * 
-     */
     public Pagination() {
-        
     }
     
     /**

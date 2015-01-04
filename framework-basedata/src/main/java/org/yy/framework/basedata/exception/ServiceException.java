@@ -28,37 +28,12 @@ public class ServiceException extends Exception {
     
     /**
      * 构造函数
-     * @param message 异常消息
-     */
-    public ServiceException(String message) {
-        super(message);
-    }
-    
-    /**
-     * 构造函数
      * @param code 异常编码
      * @param message 异常消息
      */
     public ServiceException(String code, String message) {
         super(message);
         this.code = code;
-    }
-    
-    /**
-     * 构造函数
-     * @param ex 异常
-     */
-    public ServiceException(Throwable ex) {
-        super(ex);
-    }
-    
-    /**
-     * 构造函数
-     * @param message 异常消息
-     * @param ex 异常
-     */
-    public ServiceException(String message, Throwable ex) {
-        super(message, ex);
     }
     
     /**
@@ -75,9 +50,4 @@ public class ServiceException extends Exception {
     public String getCode() {
         return code;
     }
-    
-    public void setCode(String code) {
-        this.code = code;
-    }
-    
 }
