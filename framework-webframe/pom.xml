@@ -15,15 +15,31 @@
 
 	<dependencies>
 
-		<!-- 框架基础数据 -->
-		<dependency>
+		<dependency><!-- 框架基础数据 -->
 			<groupId>org.yy.framework</groupId>
 			<artifactId>framework-basedata</artifactId>
 		</dependency>
+
+		<!-- 日志配置 -->
+		<dependency>
+			<groupId>org.perf4j</groupId>
+			<artifactId>perf4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-jdk14</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-jcl</artifactId>
+		</dependency>
 		<!-- end -->
 
-
-		<!-- spring配置, 引用framework-webframe时，根据需要自己提供 -->
+		<!-- spring配置, 事务／MVC／ORM／AOP提供 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
@@ -54,7 +70,7 @@
 		</dependency>
 		<!-- end -->
 
-		<!--alibaba自研发连接池,支持监控 -->
+		<!--alibaba自研发连接池, 支持监控 -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
@@ -67,44 +83,17 @@
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis-spring</artifactId>
 		</dependency>
-		<!-- end --> 
-
-
-		<!-- 缓存 -->
-		<dependency>
-			<groupId>com.googlecode.xmemcached</groupId>
-			<artifactId>xmemcached</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.google.code.simple-spring-memcached</groupId>
-			<artifactId>xmemcached-provider</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.google.code.simple-spring-memcached</groupId>
-			<artifactId>spring-cache</artifactId>
-		</dependency>
 		<!-- end -->
 
-		<!-- 验证 -->
-		<dependency>
+		<dependency><!-- 验证 -->
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 		</dependency>
-		<!-- end -->
 
-
-		<!-- 日志配置 -->
-		<dependency>
-			<groupId>org.perf4j</groupId>
-			<artifactId>perf4j</artifactId>
+		<dependency><!-- 缓存 -->
+			<groupId>com.google.code.simple-spring-memcached</groupId>
+			<artifactId>xmemcached-provider</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-		</dependency>
-		<!-- end -->
-
-
 
 		<!-- json视图工具, 引用framework-webframe时，根据需要自己提供 -->
 		<dependency>
@@ -116,7 +105,6 @@
 			<artifactId>jackson-dataformat-xml</artifactId>
 		</dependency>
 		<!-- end -->
-
 
 		<!-- 代理配置 -->
 		<dependency>
@@ -132,7 +120,6 @@
 			<artifactId>cglib</artifactId>
 		</dependency>
 		<!-- end -->
-
 
 		<!--工具 -->
 		<dependency><!--文件上传 -->
@@ -152,20 +139,10 @@
 			<artifactId>commons-codec</artifactId>
 		</dependency>
 
-
-		<!-- 单元测试 -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>provided</scope>
+		<dependency><!-- velocity 模板引擎 -->
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<!-- end -->
-
 
 		<!--servlet api配置 -->
 		<dependency>
@@ -179,11 +156,18 @@
 		</dependency>
 		<!-- end -->
 
-		<dependency><!-- velocity -->
-			<groupId>org.apache.velocity</groupId>
-			<artifactId>velocity</artifactId>
+		<!-- 单元测试 -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>provided</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<!-- end -->
 
 	</dependencies>
 </project>

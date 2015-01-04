@@ -15,16 +15,14 @@
 
 	<dependencies>
 
-		<dependency>
+		<dependency><!-- 框架基础数据 -->
 			<groupId>org.yy.framework</groupId>
 			<artifactId>framework-basedata</artifactId>
 		</dependency>
-		<!-- 日志 -->
-		<dependency>
+		<dependency><!-- 日志 -->
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 		</dependency>
-		<!-- end -->
 
 	</dependencies>
 </project>
