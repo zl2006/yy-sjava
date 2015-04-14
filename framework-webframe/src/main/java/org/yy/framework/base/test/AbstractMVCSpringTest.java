@@ -12,10 +12,12 @@ package org.yy.framework.base.test;
 
 import org.junit.Before;
 import org.junit.runner.RunWith;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.ContextHierarchy;
-import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -26,7 +28,10 @@ import org.springframework.web.context.WebApplicationContext;
 @WebAppConfiguration(value = "src/main/webapp")
 @ContextHierarchy({@ContextConfiguration(name = "parent", locations = "classpath*:spring/test-applicationContext*.xml"),
     @ContextConfiguration(name = "child", locations = "classpath*:spring/springmvc*.xml")})
-public class AbstractMVCSpringTest extends AbstractTransactionalJUnit4SpringContextTests {
+//public class AbstractMVCSpringTest extends AbstractTransactionalJUnit4SpringContextTests {
+  public class AbstractMVCSpringTest implements ApplicationContextAware{
+    
+    protected ApplicationContext applicationContext;
     
     @Autowired
     protected WebApplicationContext wac;
@@ -36,5 +41,12 @@ public class AbstractMVCSpringTest extends AbstractTransactionalJUnit4SpringCont
     @Before
     public void setUp() {
         mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
+    }
+
+     /** {@inheritDoc} */
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext)
+        throws BeansException {
+        this.applicationContext = applicationContext;
     }
 }
