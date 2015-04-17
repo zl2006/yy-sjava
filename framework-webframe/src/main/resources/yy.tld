@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE taglib
+PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+"http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+
+<taglib>
+	<!--定义标签版本库 -->
+	<tlib-version>1.0</tlib-version>
+	<!--定义jsp版本库 -->
+	<jsp-version>1.2</jsp-version>
+	<short-name>yy</short-name>
+	<uri>/yy</uri>
+	<description><!--标签描述- -->
+		A simple appbase tag library
+	</description>
+	<tag>
+		<name>token</name><!--tag的名字 -->
+		<tag-class>org.yy.framework.base.token.TokenTag</tag-class><!--tag对应的java类的名字 -->
+		<body-content>empty</body-content>
+	</tag>
+
+</taglib>
+

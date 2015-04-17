@@ -30,6 +30,9 @@ public final class Constants {
     /** MD5签名方式 */
     public static final String SIGN_METHOD_MD5 = "md5";
     
+    /** TOKEN */
+    public static final String MVC_TOKEN_KEY = "_request_token_";
+    
     /*************************请求源配置****************************************/
     /**请求来源*/
     public static final String REQ_FROM_SOURCE = "_src_";
