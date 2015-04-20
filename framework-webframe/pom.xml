@@ -165,6 +165,10 @@
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 		</dependency>
+		<dependency><!--xml操作通信-->
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+		</dependency>
 
 		<dependency><!-- velocity 模板引擎 -->
 			<groupId>org.apache.velocity</groupId>
