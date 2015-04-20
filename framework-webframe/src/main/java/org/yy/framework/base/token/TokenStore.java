@@ -28,11 +28,6 @@ public interface TokenStore {
     public void put(String token);
     
     /**
-     * 存储token
-     */
-    public void put(String token, String value);
-    
-    /**
      * 删除token
      */
     public void remove(String token);

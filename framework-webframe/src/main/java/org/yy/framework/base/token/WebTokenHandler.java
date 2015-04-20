@@ -10,7 +10,6 @@ package org.yy.framework.base.token;
 
 import java.util.UUID;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.yy.framework.basedata.Constants;
@@ -48,8 +47,6 @@ public class WebTokenHandler implements TokenHandler {
     /** {@inheritDoc} */
     @Override
     public boolean validToken(String token) {
-        boolean result = StringUtils.isNotEmpty(store.get(token));
-        store.remove(token);
-        return result;
+        return token.equals(store.get(token));
     }
 }

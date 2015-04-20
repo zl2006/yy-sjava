@@ -49,7 +49,7 @@ public class MemcachedTokenStore implements TokenStore {
     private MemcachedClient client;
     
     //过期时间，秒为单位
-    private int expire = 60 * 60;
+    private int expire = 60 * 20;
     
     public MemcachedTokenStore(MemcachedClient client) {
         this.client = client;
@@ -71,7 +71,7 @@ public class MemcachedTokenStore implements TokenStore {
     @Override
     public void put(String token) {
         try {
-            client.set(token, expire, "1");
+            client.set(token, expire, token);
         }
         catch (Exception e) {
             log.error("put token(" + token + ") error", e);
@@ -86,17 +86,6 @@ public class MemcachedTokenStore implements TokenStore {
         }
         catch (Exception e) {
             log.error("remove token(" + token + ") error", e);
-        }
-    }
-    
-    /** {@inheritDoc} */
-    @Override
-    public void put(String token, String value) {
-        try {
-            client.set(token, expire, value);
-        }
-        catch (Exception e) {
-            log.error("put token(" + token + ") error", e);
         }
     }
     

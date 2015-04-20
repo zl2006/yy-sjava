@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.yy.framework.basedata.Constants;
 
 /**
 *  token的session存储器, 注意在分布式环境下session的使用
@@ -25,25 +26,19 @@ public class SessionTokenStore implements TokenStore {
     /** {@inheritDoc} */
     @Override
     public String get(String token) {
-        return (String)getSession().getAttribute(token);
+        return (String)getSession().getAttribute(Constants.MVC_TOKEN_KEY);
     }
     
     /** {@inheritDoc} */
     @Override
     public void put(String token) {
-        getSession().setAttribute(token, "1");
+        getSession().setAttribute(Constants.MVC_TOKEN_KEY, token);
     }
     
     /** {@inheritDoc} */
     @Override
     public void remove(String token) {
-        getSession().removeAttribute(token);
-    }
-    
-    /** {@inheritDoc} */
-    @Override
-    public void put(String token, String value) {
-        getSession().setAttribute(token, value);
+        getSession().removeAttribute(Constants.MVC_TOKEN_KEY);
     }
     
     protected HttpSession getSession() {
