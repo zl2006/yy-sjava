@@ -33,6 +33,8 @@ public class WebTokenHandler implements TokenHandler {
     @Override
     public String generateToken() {
         String s = UUID.randomUUID().toString();
+        //使用session每次生成新的token时删除，使用memcached时，只在验证或过期后删除
+        store.remove("");
         store.put(s);
         return s;
     }
