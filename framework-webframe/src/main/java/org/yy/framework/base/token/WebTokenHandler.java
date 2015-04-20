@@ -49,8 +49,8 @@ public class WebTokenHandler implements TokenHandler {
     /** {@inheritDoc} */
     @Override
     public boolean validToken(String token) {
-        String s   = store.get(token);
+        String s = store.get(token);
         store.remove(token);
-        return token.equals(s);
+        return token != null && token.equals(s);
     }
 }
