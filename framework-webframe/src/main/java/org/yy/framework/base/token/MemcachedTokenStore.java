@@ -8,7 +8,6 @@
 */
 package org.yy.framework.base.token;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -58,18 +57,28 @@ public class MemcachedTokenStore implements TokenStore {
     /** {@inheritDoc} */
     @Override
     public String get(String token) {
-        try {
-            return client.get(token);
+        String result = null;
+        if (token == null) {
+            result = null;
         }
-        catch (Exception e) {
-            log.error("get token(" + token + ") error", e);
-            return null;
+        else {
+            try {
+                result = client.get(token);
+            }
+            catch (Exception e) {
+                log.error("get token(" + token + ") error", e);
+                result = null;
+            }
         }
+        return result;
     }
     
     /** {@inheritDoc} */
     @Override
     public void put(String token) {
+        if (token == null) {
+            return;
+        }
         try {
             client.set(token, expire, token);
         }
@@ -81,6 +90,9 @@ public class MemcachedTokenStore implements TokenStore {
     /** {@inheritDoc} */
     @Override
     public void remove(String token) {
+        if( token == null){
+            return;
+        }
         try {
             client.delete(token);
         }
