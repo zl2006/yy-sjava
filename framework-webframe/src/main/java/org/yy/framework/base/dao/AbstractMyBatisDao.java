@@ -8,7 +8,6 @@
 package org.yy.framework.base.dao;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -39,11 +38,9 @@ public abstract class AbstractMyBatisDao {
      * @param sqlName Ibatis中定义的SQL名称
      * @param condition 查询条件
      * @return  数据列表
-     * @throws SQLException 
      */
     @SuppressWarnings("unchecked")
-    protected <T extends Object> ResultDto<T> findBypagination(String sqlName, AbstractQueryDto condition)
-        throws SQLException {
+    protected <T extends Object> ResultDto<T> findBypagination(String sqlName, AbstractQueryDto condition) {
         ResultDto<T> rs = new ResultDto<T>();
         rs.setResult((List<T>)sqlSession.selectList(sqlName, condition));
         if (condition != null && condition.getPagination() != null) {
@@ -59,11 +56,9 @@ public abstract class AbstractMyBatisDao {
      * @param sqlName Ibatis中定义的SQL名称
      * @param condition 查询条件
      * @return  数据列表
-     * @throws SQLException 
      */
     @SuppressWarnings("unchecked")
-    protected <T extends Object> ResultDto<T> findBypagination(String sqlName, Object condition)
-        throws SQLException {
+    protected <T extends Object> ResultDto<T> findBypagination(String sqlName, Object condition) {
         ResultDto<T> rs = new ResultDto<T>();
         rs.setResult((List<T>)sqlSession.selectList(sqlName, condition));
         return rs;
@@ -75,10 +70,8 @@ public abstract class AbstractMyBatisDao {
      * @param sqlName Ibatis中定义的SQL名称
      * @param condition 查询条件
      * @return  数据列表
-     * @throws SQLException 
      */
-    protected <T> T findByUniqe(String sqlName, Object condition)
-        throws SQLException {
+    protected <T> T findByUniqe(String sqlName, Object condition) {
         List<T> rs = sqlSession.selectList(sqlName, condition);
         if (rs == null || rs.size() == 0) {
             return null;
@@ -90,13 +83,11 @@ public abstract class AbstractMyBatisDao {
      * 获取数据库连接
      * 
      * @return 数据库连接
-     * @throws SQLException
      */
-    public Connection getConnection()
-        throws SQLException {
+    public Connection getConnection() {
         return sqlSession.getConnection();
     }
-
+    
     /**
     * @param 对sqlSession进行赋值
     */
