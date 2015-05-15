@@ -86,10 +86,10 @@ public final class Constants {
     public static final String M_ERROR_404_PAGE = "/WEB-INF/common/merror404";
     
     /** 手机端500错误页 */
-    public static final String M_ERROR_500_PAGE ="/WEB-INF//common/merror500";
+    public static final String M_ERROR_500_PAGE ="/WEB-INF/common/merror500";
     
     /** 手机端成功页 */
-    public static final String M_SUCCESS_PAGE = "/WEB-INF//common/msuccess";
+    public static final String M_SUCCESS_PAGE = "/WEB-INF/common/msuccess";
     
     /*************************end************************************************/
     
