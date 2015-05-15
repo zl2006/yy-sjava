@@ -56,13 +56,13 @@ public final class Constants {
     public static final String ERROR_500_CODE = "500";
     
     /** PC端404错误页 */
-    public static final String ERROR_404_PAGE = "/common/error404";
+    public static final String ERROR_404_PAGE = "/WEB-INF/common/error404";
     
     /** PC端500错误页 */
-    public static final String ERROR_500_PAGE = "/common/error500";
+    public static final String ERROR_500_PAGE = "/WEB-INF/common/error500";
     
     /** PC端成功页 */
-    public static final String SUCCESS_PAGE = "/common/success";
+    public static final String SUCCESS_PAGE = "/WEB-INF/common/success";
     
     /**增加页面*/
     public static final String ADD_PAGE = "add";
@@ -83,13 +83,13 @@ public final class Constants {
     public static final String VIEW_PAGE = "view";
     
     /** 手机端404错误页 */
-    public static final String M_ERROR_404_PAGE = "/common/merror404";
+    public static final String M_ERROR_404_PAGE = "/WEB-INF/common/merror404";
     
     /** 手机端500错误页 */
-    public static final String M_ERROR_500_PAGE = "/common/merror500";
+    public static final String M_ERROR_500_PAGE ="/WEB-INF//common/merror500";
     
     /** 手机端成功页 */
-    public static final String M_SUCCESS_PAGE = "/common/msuccess";
+    public static final String M_SUCCESS_PAGE = "/WEB-INF//common/msuccess";
     
     /*************************end************************************************/
     
