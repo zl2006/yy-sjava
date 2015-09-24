@@ -12,7 +12,7 @@ public final class Constants {
     private Constants() {
     }
     
-    /** 默认时间格式 **/
+    /**认时间格式 **/
     public static final String DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
     
     /** UTF-8字符集 **/
@@ -32,6 +32,8 @@ public final class Constants {
     
     /** TOKEN */
     public static final String MVC_TOKEN_KEY = "_request_token_";
+    /*************************end**************************************************/
+    
     
     /*************************请求源配置****************************************/
     /**请求来源*/
@@ -42,8 +44,8 @@ public final class Constants {
     
     /**手机源*/
     public static final String M_SOURCE = "m";
-    
     /*************************end********************************************/
+    
     
     /*************************编码及返回页面***********************************/
     /** 通用访问成功时的标志位 */
@@ -51,18 +53,6 @@ public final class Constants {
     
     /** 通用访问失败时的标志位 */
     public static final String FAILURE_FLAG = "failure";
-    
-    /**通用错误编码*/
-    public static final String ERROR_500_CODE = "500";
-    
-    /** PC端404错误页 */
-    public static final String ERROR_404_PAGE = "/common/error404";
-    
-    /** PC端500错误页 */
-    public static final String ERROR_500_PAGE = "/common/error500";
-    
-    /** PC端成功页 */
-    public static final String SUCCESS_PAGE = "/common/success";
     
     /**增加页面*/
     public static final String ADD_PAGE = "add";
@@ -81,17 +71,34 @@ public final class Constants {
     
     /**详情页*/
     public static final String VIEW_PAGE = "view";
+    /*************************end************************************************/
+    
+    
+    
+    /*************************通用错误编码**************************************/
+    /**通用错误编码*/
+    public static final String ERROR_500_CODE = "500";
+    
+    /** PC端404错误页 */
+    public static final String ERROR_404_PAGE = "/common/error404";
+    
+    /** PC端500错误页 */
+    public static final String ERROR_500_PAGE = "/common/error500";
+    
+    /** PC端成功页 */
+    public static final String SUCCESS_PAGE = "/common/success";
     
     /** 手机端404错误页 */
-    public static final String M_ERROR_404_PAGE = "/WEB-INF/common/merror404";
+    public static final String M_ERROR_404_PAGE = "/common/merror404";
     
     /** 手机端500错误页 */
-    public static final String M_ERROR_500_PAGE ="/WEB-INF/common/merror500";
+    public static final String M_ERROR_500_PAGE = "/common/merror500";
     
     /** 手机端成功页 */
-    public static final String M_SUCCESS_PAGE = "/WEB-INF/common/msuccess";
-    
+    public static final String M_SUCCESS_PAGE = "/common/msuccess";
     /*************************end************************************************/
+    
+    
     
     /*************************控制层返回的数据结果关键字**************************************/
     /** 结果集标志的名称 */
