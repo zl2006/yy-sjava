@@ -5,7 +5,7 @@
 * 修 改 人:  zhouliang
 * 修改时间:  2012-5-24
 */
-package org.yy.framework.util.http;
+package org.yy.framework.util.lang;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
