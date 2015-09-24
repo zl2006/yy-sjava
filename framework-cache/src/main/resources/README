@@ -1,4 +1,5 @@
-一，配置
+一，配置(memcached, hashmap,redis)
+1, memcached配置
 <cache:annotation-driven cache-manager="cacheManager" proxy-target-class="true" />    		<!-- 开启缓存 -->
 	<bean id="memcachedClientBuilder" class="net.rubyeye.xmemcached.XMemcachedClientBuilder">   <!-- 配置memcached的缓存服务器 -->
 		<constructor-arg>
@@ -22,7 +23,35 @@
 		</property>
 		<property name="transactionAware" value="true"></property><!-- 是否支持事务回滚，默认为false -->
 	</bean>
+	
+2，redis配置
+ <bean
+        id='jedisConnectionFactory'
+        class='org.springframework.data.redis.connection.jedis.JedisConnectionFactory'
+        p:host-name='${redis.host-name}'
+        p:port='${redis.port}'
+        p:use-pool='true'/>
+    <!-- redis template definition -->
+    <bean
+        id='redisTemplate'
+        class='org.springframework.data.redis.core.RedisTemplate'
+        p:connection-factory-ref='jedisConnectionFactory'/>
+    <!-- declare Redis Cache Manager -->
+    <bean
+        id='cacheManager'
+        class='org.springframework.data.redis.cache.RedisCacheManager'
+        c:template-ref='redisTemplate'/>
 
+3，hashmap配置，此配置缓存供开发使用
+<bean id="cacheManager" class="com.tydic.framework.base.cache.NotTransactionCacheManager">
+		<property name="caches">
+			<set>
+				<bean class="com.tydic.framework.base.cache.HashMapCache"  p:name="package" p:exp="5" />
+				<bean class="com.tydic.framework.base.cache.HashMapCache"  p:name="product" p:exp="60" />
+				<bean class="com.tydic.framework.base.cache.HashMapCache"  p:name="seller" p:exp="60" />
+			</set>
+		</property>
+	</bean>
 
 
 二，编码
