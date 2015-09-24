@@ -12,8 +12,11 @@ public final class Constants {
     private Constants() {
     }
     
-    /**认时间格式 **/
+    /**默认时间格式 **/
     public static final String DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
+    
+    /**默认时区*/
+    public static final String DATE_TIMEZONE = "GMT+8";
     
     /** UTF-8字符集 **/
     public static final String CHARSET_UTF8 = "UTF-8";
@@ -122,6 +125,13 @@ public final class Constants {
     /** 结果集的名称 */
     public static final String RESULT_NAMES[] = {RESULT_FLAG_NAME, RESULT_CODE_NAME, RESULT_MESSAGE_NAME,
         RESULT_DATA_NAME, RESULT_ERRORS_NAME};
+    /*******************************************end**************************************/
+    
+    
+    /*************************响应编码**************************************/
+    public static final String ACCEPT_ENCODING = "Accept-Encoding";
+    public static final String CONTENT_ENCODING = "Content-Encoding";
+    public static final String CONTENT_ENCODING_GZIP = "gzip";
     /*******************************************end**************************************/
     
 }
