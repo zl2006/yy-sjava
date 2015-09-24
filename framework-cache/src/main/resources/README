@@ -1,0 +1,67 @@
+一，配置
+<cache:annotation-driven cache-manager="cacheManager" proxy-target-class="true" />    		<!-- 开启缓存 -->
+	<bean id="memcachedClientBuilder" class="net.rubyeye.xmemcached.XMemcachedClientBuilder">   <!-- 配置memcached的缓存服务器 -->
+		<constructor-arg>
+			<list>
+				<bean class="java.net.InetSocketAddress">
+					<constructor-arg value="127.0.0.1" />
+					<constructor-arg value="11211" />
+				</bean>
+			</list>
+		</constructor-arg>
+		<property name="connectionPoolSize" value="20"></property>
+	</bean>
+	<bean id="memcachedClient" factory-bean="memcachedClientBuilder" factory-method="build" destroy-method="shutdown" />
+	<!-- memcached缓存管理器 -->
+	<bean id="cacheManager" class="org.yy.cache.client.MemcachedCacheManager">
+		<property name="caches">
+			<set>
+				<bean class="org.yy.cache.client.MemcachedCache" p:client-ref="memcachedClient" p:name="cacheName1" p:exp="86400" />
+				<bean class="org.yy.cache.client.MemcachedCache" p:client-ref="memcachedClient" p:name="cacheName2" p:exp="3600" />
+			</set>
+		</property>
+		<property name="transactionAware" value="true"></property><!-- 是否支持事务回滚，默认为false -->
+	</bean>
+
+
+
+二，编码
+@Repository("packageDao")
+public class PackageDaoImpl extends AbstractMyBatisDao implements PackageDao {
+
+	/* (non-Javadoc)
+	 * @see com.tydic.qrm.dao.PackageDao#queryPackage(java.lang.Long, java.lang.String)
+	 */
+	@Override
+	public Package queryPackage(Long sellerId, String packageCode) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("sellerId" , sellerId);
+		params.put("packageCode", packageCode);
+		return sqlSession.selectOne("qrm.FIND_PACKAGE_BY_SELLERID_CODE", params);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.tydic.qrm.dao.PackageDao#queryPackage(java.lang.Long)
+	 */
+	@Override
+	@Cacheable(value = "package", key = "'package.' + #packageId")
+	public Package queryPackage(Long packageId) {
+		return sqlSession.selectOne("qrm.FIND_PACKAGE_BY_ID",packageId );
+	}
+
+	/* (non-Javadoc)
+	 * @see com.tydic.qrm.dao.PackageDao#updatePackage(com.tydic.qrm.model.Package)
+	 */
+	@Override
+	public int updatePackage(Package pkg) {
+		return sqlSession.update("qrm.UPDATE_PACKAGE", pkg);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.tydic.qrm.dao.PackageDao#activePackage(com.tydic.qrm.model.dto.PackageActiveDto)
+	 */
+	@Override
+	public int activePackage(PackageActiveDto pkgs) {
+		return sqlSession.update("qrm.UPDATE_PACKAGE_ACTIVE",pkgs );
+	}
+}
