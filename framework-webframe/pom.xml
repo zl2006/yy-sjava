@@ -108,6 +108,7 @@
 		<dependency><!-- 缓存 -->
 			<groupId>com.google.code.simple-spring-memcached</groupId>
 			<artifactId>xmemcached-provider</artifactId>
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- json视图工具, 引用framework-webframe时，根据需要自己提供 -->
@@ -137,10 +138,6 @@
 		<!-- end -->
 
 		<!--工具 -->
-		<dependency><!--网络通信-->
-				<groupId>commons-net</groupId>
-				<artifactId>commons-net</artifactId>
-		</dependency>
 		<dependency><!--文件上传 -->
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
@@ -168,11 +165,7 @@
 		<dependency><!--编码工具类 -->
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
-		</dependency><!-- 
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-		</dependency> -->
+		</dependency>
 		<dependency><!--xml操作通信-->
 			<groupId>com.thoughtworks.xstream</groupId>
 			<artifactId>xstream</artifactId>
@@ -181,6 +174,7 @@
 		<dependency><!-- velocity 模板引擎 -->
 			<groupId>org.apache.velocity</groupId>
 			<artifactId>velocity</artifactId>
+			<scope>provider</scope>
 		</dependency>
 
 		<!--servlet api配置 -->
@@ -197,6 +191,7 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		<!-- end -->
 

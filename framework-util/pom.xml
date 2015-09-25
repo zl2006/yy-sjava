@@ -23,6 +23,22 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<scope>provider</scope>
+		</dependency>
+		<dependency><!--网络通信-->
+				<groupId>commons-net</groupId>
+				<artifactId>commons-net</artifactId>
+				<scope>provider</scope>
+		</dependency>
+		<!-- 
+		<dependency>
+			<groupId>cn.cocho.java.lib.pinyin4j</groupId>
+			<artifactId>pinyin4j</artifactId>
+			<scope>provider</scope>
+		</dependency> -->
 
 	</dependencies>
 </project>
