@@ -137,6 +137,10 @@
 		<!-- end -->
 
 		<!--工具 -->
+		<dependency><!--网络通信-->
+				<groupId>commons-net</groupId>
+				<artifactId>commons-net</artifactId>
+		</dependency>
 		<dependency><!--文件上传 -->
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
