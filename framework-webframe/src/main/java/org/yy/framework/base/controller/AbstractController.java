@@ -42,7 +42,7 @@ import static org.yy.framework.basedata.Constants.*;
  * 
  * @author zhouliang
  * @version [1.0, 2013年11月11日]
- * @since [taobao-base/1.0]
+ * @since [web-framework/1.0]
  */
 public abstract class AbstractController {
     
