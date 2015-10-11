@@ -33,6 +33,11 @@
 				<artifactId>commons-net</artifactId>
 				<scope>provider</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<scope>provided</scope>
+		</dependency>
 		<!-- 
 		<dependency>
 			<groupId>cn.cocho.java.lib.pinyin4j</groupId>
