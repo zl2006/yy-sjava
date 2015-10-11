@@ -17,6 +17,9 @@
 		<module>./framework-webframe</module>			<!--J2EE框架web工程基础-->
 		<module>./framework-document</module>			<!--J2EE框架服务文档化-->
 		<module>./framework-util</module>			<!--J2EE框架工具包-->	
+		<module>./framework-cache</module>			<!--缓存-->	
+		<module>./framework-serialization</module>		<!--序列化-->	
+		<module>./framework-service</module>			<!--服务化-->	
 	</modules>
 
 </project>
