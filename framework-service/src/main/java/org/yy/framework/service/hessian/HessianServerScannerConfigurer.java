@@ -34,19 +34,26 @@ import org.springframework.util.StringUtils;
 /**
  *  hessian 接口服务端自动扫描注入生成BeanDefinition， 通过BeanDefinitionRegistryPostProcessor实现<br>
  *  配置实例：<br>
- *  1，配置
- *  <bean class="org.yy.framework.service.hessian.HessianServerScannerConfigurer">
-        <property name="basePackage" value="org.yy.demo.**.service"></property>y>
+ *  1，配置扫描
+     第一扫描实现类
+    <context:component-scan base-package="org.yy.framework.service.hessian"></context:component-scan>
+    第二扫描hessian服务
+    <bean class="org.yy.framework.service.hessian.HessianServerScannerConfigurer">
+        <property name="basePackage" value="org.yy.framework.service.hessian"></property>
     </bean>
     2，编码
-    package org.yy.demo.service;
-    import java.util.List;
-    import org.yy.framework.service.hessian.Context;
-    import org.yy.framework.service.hessian.Hessian;
-    // Context.API_V2 用于客户端调用
-    @Hessian(context = Context.API_V2, uri = "/demo/testService")
-    public interface TestService {
-        public List<String> getList(List<Long> hhs);
+    接口编码
+    @Hessian(app = "test_app", uri = "/demo/testServer", bean = "testServer", overloadEnabled = false)
+    public interface TestServer {
+        public void sayHello();
+    }
+    实现编码
+    @Service("testServer")
+    public class TestServerImpl implements TestServer {
+        @Override
+        public void sayHello() {
+            System.out.println("hello world");
+        }
     }
  * 
  * @author zhouliang
@@ -61,7 +68,7 @@ public class HessianServerScannerConfigurer implements BeanDefinitionRegistryPos
     //Hessian的配置注解
     private final Class<? extends Annotation> hessianAnnoClass = Hessian.class;
     
-    //扫描hessian服务的包，多个包时使用“，”分隔
+    //扫描hessian服务的包，多个包时使用“，;”分隔
     private String basePackage;
     
     //扫描类时支持元注解配置
@@ -84,7 +91,7 @@ public class HessianServerScannerConfigurer implements BeanDefinitionRegistryPos
         //Step 1， Hessian扫描器初始化
         HessianClassPathScanner scan = new HessianClassPathScanner(registry);
         scan.setResourceLoader(this.applicationContext);
-        scan.setBeanNameGenerator(this.nameGenerator); 
+        scan.setBeanNameGenerator(this.nameGenerator);
         scan.setIncludeAnnotationConfig(this.includeAnnotationConfig);
         String[] basePackages =
             StringUtils.tokenizeToStringArray(this.basePackage,
@@ -121,7 +128,7 @@ public class HessianServerScannerConfigurer implements BeanDefinitionRegistryPos
                     AnnotationMetadata metadata = ((ScannedGenericBeanDefinition)definition).getMetadata();
                     Map<String, Object> annotationAttributes =
                         metadata.getAnnotationAttributes(hessianAnnoClass.getName());
-                    String beanRef = (String)annotationAttributes.get("beanRef");
+                    String beanRef = (String)annotationAttributes.get("bean");
                     
                     definition.getPropertyValues().add("serviceInterface", definition.getBeanClassName());
                     definition.getPropertyValues().add("service", new RuntimeBeanReference(beanRef));
@@ -142,7 +149,6 @@ public class HessianServerScannerConfigurer implements BeanDefinitionRegistryPos
         @Override
         protected boolean checkCandidate(String beanName, BeanDefinition beanDefinition)
             throws IllegalStateException {
-            //判断是否重名
             if (!applicationContext.containsBean(beanName) && super.checkCandidate(beanName, beanDefinition)) {
                 return true;
             }
@@ -156,9 +162,9 @@ public class HessianServerScannerConfigurer implements BeanDefinitionRegistryPos
         
     }
     
+    //根据Hessian的uri生成beanname
     private BeanNameGenerator nameGenerator = new AnnotationBeanNameGenerator() {
         @Override
-        //根据Hessian的uri生成beanname
         protected String buildDefaultBeanName(BeanDefinition definition) {
             AnnotationMetadata metadata = ((ScannedGenericBeanDefinition)definition).getMetadata();
             Map<String, Object> annotationAttributes = metadata.getAnnotationAttributes(hessianAnnoClass.getName());

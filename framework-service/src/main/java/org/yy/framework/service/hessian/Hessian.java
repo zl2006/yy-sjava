@@ -41,22 +41,20 @@ public @interface Hessian {
      * 1，<property name="service" ref="addService" />  
      * 2，definition.getPropertyValues().add("service", new RuntimeBeanReference(beanNameRef));
      */
-    String beanRef() default "";
+    String bean();
     
     /**
      *  hessian名称，也是客户端访问链接的后半部分 配置。如: /testService
      */
-    String uri(); //
+    String uri();
     
     /**
-     *  客户端使用
-     * 当接口服务有重载方法时，是否能正常调用。注意如果有重载方法，hessian描述需要把它设置成true
+     * 服务所属应用，每个应用对应一个远程调用地址（ http://localhost:8004/）
      */
-    boolean overloadEnabled() default false; // 
+    String app();
     
     /**
-     *  客户端使用
-     *  客户端访问链接前半部分配置 如 http://localhost:8004/
+     *  是否支持Hessian服务接口的重载调用（客户端使用）
      */
-    Context context();
+    boolean overloadEnabled() default false;
 }
