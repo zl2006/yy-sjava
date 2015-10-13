@@ -17,6 +17,6 @@ public enum Context {
     }
     
     public String getRemoteUrl() {
-        return System.getProperty(remoteUrlConfigKey, "http://127.0.0.1/sys/remote");
+        return System.getProperty(remoteUrlConfigKey, "http://127.0.0.1");
     }
 }

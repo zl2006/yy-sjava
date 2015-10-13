@@ -10,7 +10,6 @@ import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Set;
 
-import org.apache.commons.collections.MapUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -39,6 +38,7 @@ import org.springframework.core.type.filter.AssignableTypeFilter;
 import org.springframework.core.type.filter.TypeFilter;
 import org.springframework.remoting.caucho.HessianProxyFactoryBean;
 import org.springframework.util.StringUtils;
+import org.yy.framework.service.util.MapUtils;
  
 /**
  *  hessian 接口客户端自动扫描注入<br>
