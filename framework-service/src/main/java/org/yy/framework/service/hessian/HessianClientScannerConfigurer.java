@@ -30,6 +30,7 @@ import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
 import org.springframework.remoting.caucho.HessianProxyFactoryBean;
 import org.springframework.util.StringUtils;
+import org.yy.framework.service.anno.Hessian;
 import org.yy.framework.service.util.MapUtils;
 
 /**

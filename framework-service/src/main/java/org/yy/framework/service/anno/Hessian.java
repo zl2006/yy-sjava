@@ -1,9 +1,10 @@
-package org.yy.framework.service.hessian;
+package org.yy.framework.service.anno;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
 
 /**
  *      Hessian服务描述, 用于描述spring中的beanDefine<br>
