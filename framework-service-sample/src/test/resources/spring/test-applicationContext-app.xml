@@ -12,12 +12,13 @@
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.1.xsd
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
 
-	<bean class="org.yy.framework.service.hessian.HessianClientScannerConfigurer">
+	<bean class="org.yy.framework.service.ServiceScannerConfigurer">
+		<property name="where" value="client"></property>
 		<property name="basePackage" value="org.yy.framework.service.hessian"></property>
 		<property name="remoteUrls">
 			<util:map>
 				<!-- key为hessian元注解中app的值 -->
-				<entry key="test_app" value="http://localhost:8080"></entry>
+				<entry key="test_app" value="localhost:8080"></entry>
 			</util:map>
 		</property>
 	</bean>

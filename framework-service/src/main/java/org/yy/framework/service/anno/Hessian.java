@@ -7,26 +7,23 @@ import java.lang.annotation.Target;
 
 
 /**
- *      Hessian服务描述, 用于描述spring中的beanDefine<br>
- *     服务地址：http://localhost:8004/testService
  *  
- *      1，手动Bean定义模式
-          definition.getPropertyValues().add("serviceInterface", definition.getBeanClassName());
-          definition.getPropertyValues().add("service", new RuntimeBeanReference(beanNameRef));
-          definition.setBeanClass(HessianServiceExporter.class);
-          
-          
-          <beans xmlns="http://www.springframework.org/schema/beans"  
-                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
-                 xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">  
-                   
-                  <bean id="testService" class="org.yy.demo.service.TestServiceImpl" />  
-                  
-                  <bean name="/addService.htm" class="org.springframework.remoting.caucho.HessianServiceExporter">  
-                    <property name="service" ref="testService" />  
-                    <property name="serviceInterface" value="org.yy.demo.service.TestService" />  
-                  </bean>  
-          </beans> 
+ * Hessian服务描述, 用于描述spring中的beanDefine
+ * 
+ * 
+ * 1,服务器端配置
+       <bean id="testService" class="org.yy.demo.service.TestServiceImpl" />  
+       <bean name="/hessian/testService" class="org.springframework.remoting.caucho.HessianServiceExporter">  
+             <property name="service" ref="testService" />  
+             <property name="serviceInterface" value="org.yy.demo.service.TestService" />  
+       </bean> 
+  2,客户端配置
+        <bean id="testService" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">  
+        	<!-- 请求代理Servlet路径 -->          
+        	<property name="serviceUrl"><value>http://localhost:8080/HessianSpring/remote/helloSpring</value></property>  
+        	<!-- 接口定义 -->  
+        	<property name="serviceInterface"><value>org.yy.demo.service.TestService</value>  </property>  
+    	</bean>  
  *
  * @author zhouliang
  * @version [1.0, 2015年10月11日]
@@ -37,25 +34,26 @@ import java.lang.annotation.Target;
 public @interface Hessian {
     
     /**
-     * 具体实现bean引用<br>
-     * 例如：
-     * 1，<property name="service" ref="addService" />  
-     * 2，definition.getPropertyValues().add("service", new RuntimeBeanReference(beanNameRef));
+     *  1,服务器端扫描时，为引用的bean（<property name="service" ref="testService" />）；
+     *  2,客户端扫描时，为hessian的bean名称（<bean id="testService" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">  ）；
      */
     String bean();
     
+
     /**
-     *  hessian名称，也是客户端访问链接的后半部分 配置。如: /testService
+     *  1,服务器端扫描时，为hessian的bean名称（<bean name="/hessian/testService" class="org.springframework.remoting.caucho.HessianServiceExporter">  ）
+        2,客户端扫描时，为hessian请求的地址组成部分（<property name="serviceUrl"><value>http://localhost:8080/hessian/testService</value></property>  ）
      */
     String uri();
     
     /**
-     * 服务所属应用，每个应用对应一个远程调用地址（ http://localhost:8004/）
+     * 客户端使用，通过app名称指定远程调用地址（localhost:8004)
      */
     String app();
     
+    
     /**
-     *  是否支持Hessian服务接口的重载调用（客户端使用）
+     *  客户端使用，是否支持Hessian服务接口的重载调用
      */
     boolean overloadEnabled() default false;
 }
