@@ -4,7 +4,6 @@ import javax.annotation.Resource;
 
 import org.junit.Test;
 import org.yy.framework.base.test.AbstractSpringTest;
-import org.yy.framework.service.hessian.TestServer;
 
 /*
 * 文 件 名:  HessianClient.java
@@ -25,11 +24,11 @@ import org.yy.framework.service.hessian.TestServer;
 */
 public class HessianClientTest extends AbstractSpringTest {
     
-    @Resource(name = "testServer")
-    TestServer testServer;
+    @Resource(name = "testHessianService")
+    TestHessianService testHessianService;
     
     @Test
     public void testSayHello() {
-        testServer.sayHello();
+        testHessianService.sayHello();
     }
 }

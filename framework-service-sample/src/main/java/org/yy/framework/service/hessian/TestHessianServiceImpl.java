@@ -18,12 +18,12 @@ import org.springframework.stereotype.Service;
 * @version  [版本号, 2015年10月13日]
 * @since  [产品/模块版本]
 */
-@Service("testServer")
-public class TestServerImpl implements TestServer {
+@Service("testHessianService")
+public class TestHessianServiceImpl implements TestHessianService {
     
     /** {@inheritDoc} */
     @Override
     public void sayHello() {
-        System.out.println("hello world");
+        System.out.println("hello hessian!");
     }
 }

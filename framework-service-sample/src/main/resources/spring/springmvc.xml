@@ -12,5 +12,5 @@
 	<bean class="org.yy.framework.service.ServiceScannerConfigurer">
 		<property name="basePackage" value="org.yy.framework.service.hessian"></property>
 	</bean>
-
+	
 </beans>

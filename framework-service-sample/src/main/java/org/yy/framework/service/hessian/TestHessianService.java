@@ -9,6 +9,7 @@
 package org.yy.framework.service.hessian;
 
 import org.yy.framework.service.anno.Hessian;
+import org.yy.framework.service.Constants;
 
 /**
 * <一句话功能简述>
@@ -18,7 +19,7 @@ import org.yy.framework.service.anno.Hessian;
 * @version  [版本号, 2015年10月13日]
 * @since  [产品/模块版本]
 */
-@Hessian(app = "test_app", uri = "/demo/testServer", bean = "testServer", overloadEnabled = false)
-public interface TestServer {
+@Hessian(app = Constants.APP, uri = "/hessian/testHessianService", bean = "testHessianService", overloadEnabled = false)
+public interface TestHessianService {
     public void sayHello();
 }

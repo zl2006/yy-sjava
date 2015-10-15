@@ -46,7 +46,7 @@ public class ServiceClassPathBeanDefinitionScanner extends ClassPathBeanDefiniti
 	protected List<Class<? extends Annotation>> annoClasses = new ArrayList<Class<? extends Annotation>>();
     
     //元注解解析器
-    protected Map<String, Parser> parsers = new HashMap<String, Parser>();
+    protected Map<String,  Parser> parsers = new HashMap<String, Parser>();
     
     //扫服务注解配置
     private ServiceScannerConfigurer scannerConfigurer;
@@ -186,7 +186,7 @@ public class ServiceClassPathBeanDefinitionScanner extends ClassPathBeanDefiniti
      * 初始化元注解解析器
      */
     protected void initParers() {
-        parsers.put(Hessian.class.getName(), new HessianParser(scannerConfigurer.getRemoteUrls()));
+        parsers.put(Hessian.class.getName(), new HessianParser(this.scannerConfigurer));
     }
     
     /**
