@@ -15,6 +15,11 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>com.caucho</groupId>
+			<artifactId>hessian</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>org.yy.framework</groupId>
 			<artifactId>framework-service</artifactId>
 			<version>${project.version}</version>
