@@ -10,15 +10,11 @@ package org.yy.framework.serialization;
 
 import java.io.Serializable;
 
-/**
-* <一句话功能简述>
-* <功能详细描述>
-* 
-* @author  zhouliang
-* @version  [版本号, 2015年10月16日]
-* @since  [产品/模块版本]
-*/
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
+
 @SuppressWarnings("serial")
+@XStreamAlias("school")
 public class School implements Serializable{
     
     private String name = "湖南理工学院";

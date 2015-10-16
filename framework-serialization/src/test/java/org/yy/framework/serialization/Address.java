@@ -10,9 +10,12 @@ package org.yy.framework.serialization;
 
 import java.io.Serializable;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
 /**
 */
 @SuppressWarnings("serial")
+@XStreamAlias("address")
 public class Address  implements Serializable{
     
     private String city;

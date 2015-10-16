@@ -28,6 +28,7 @@ public final class SerializableFactory {
         serializables.put(SERIALIZATIONTYPE.JSON_FASTJSON, FastJsonSerializable.create());
         serializables.put(SERIALIZATIONTYPE.PROTOSTUFF, ProtostuffSerializable.create());
         serializables.put(SERIALIZATIONTYPE.JDK, JdkSerializable.create());
+        serializables.put(SERIALIZATIONTYPE.XML_XSTREAM, XStreamSerializable.create());
     }
     
     private SerializableFactory() {

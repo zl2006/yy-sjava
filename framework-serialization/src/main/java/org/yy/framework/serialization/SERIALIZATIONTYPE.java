@@ -17,7 +17,7 @@ package org.yy.framework.serialization;
 */
 public enum SERIALIZATIONTYPE {
     
-    JSON_FASTJSON("fastjson"), PROTOSTUFF("protostuff"), JDK("jdk");
+    JSON_FASTJSON("fastjson"), PROTOSTUFF("protostuff"), JDK("jdk"), XML_XSTREAM("xstream");
     
     private String type;
     

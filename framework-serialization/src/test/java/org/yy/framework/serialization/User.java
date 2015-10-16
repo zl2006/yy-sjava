@@ -6,9 +6,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
 /**
 */
 @SuppressWarnings("serial")
+@XStreamAlias("user")
 public class User implements Serializable {
     
     private String name = "周亮";
