@@ -13,4 +13,30 @@
 	<packaging>jar</packaging>
 	<name>framework-serialization</name>
 
+	<dependencies>
+		<!-- fastjson依赖pom -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- protostuff依赖pom -->
+		<dependency>
+			<groupId>io.protostuff</groupId>
+			<artifactId>protostuff-core</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.protostuff</groupId>
+			<artifactId>protostuff-runtime</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency><!--编码工具类 -->
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
 </project>
