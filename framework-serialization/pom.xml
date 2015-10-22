@@ -45,6 +45,19 @@
 			<artifactId>xstream</artifactId>
 		</dependency>
 
+		
+		<!-- 单元测试 -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<!-- end -->
 
 	</dependencies>
 
