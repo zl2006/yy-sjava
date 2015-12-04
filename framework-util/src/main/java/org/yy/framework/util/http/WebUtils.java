@@ -492,7 +492,7 @@ public abstract class WebUtils {
 	}
 
 	protected static String getResponseAsString(HttpURLConnection conn) throws IOException {
-		String charset = getResponseCharset(conn.getContentType());
+		String charset = getResponseCharset(conn,conn.getContentType());
 		InputStream es = conn.getErrorStream();
 		if (es == null) {
 			String contentEncoding = conn.getContentEncoding();
@@ -528,6 +528,14 @@ public abstract class WebUtils {
 				stream.close();
 			}
 		}
+	}
+	
+	public static String getResponseCharset(HttpURLConnection conn,String defaultCtype) {
+		String ctype = conn.getRequestProperty("Content-Type");
+		if(StringUtils.isEmpty(ctype)){
+			ctype = defaultCtype;
+		}
+		return getResponseCharset(ctype);
 	}
 
 	public static String getResponseCharset(String ctype) {
