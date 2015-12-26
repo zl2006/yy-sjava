@@ -153,4 +153,36 @@ public abstract class StringUtils {
         }
     }
     
+    /**
+     * 左填充pad字符，以达到length长度
+     * 
+     * @param str
+     *            原字符串
+     * @param length
+     *            填充后的长度
+     * @param pad
+     *            填充字符
+     * @return
+     */
+    public static String leftPad(String str, int length, String pad) {
+        
+        if (StringUtils.isEmpty(str)) {
+            return str;
+        }
+        if (str.length() >= length) {
+            return str;
+        }
+        int padlen = length - str.length();
+        
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < padlen; ++i) {
+            if (str.length() + pad.length() > length) {
+                break;
+            }
+            sb.append(pad);
+        }
+        sb.append(str);
+        return sb.toString();
+    }
+    
 }
