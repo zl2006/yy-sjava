@@ -104,6 +104,29 @@ public final class StringGenerateUtils {
     }
     
     /**
+     * 生成一组字符串, 由序列+随机部分组成
+     * @param startSeq 序列值, > 0 and startSeq + num <= long.MAX_VALUE
+     * @param seqStrLen 序列部分长度,  > 0 and <= 10
+     *  @param num 数量
+     *  @param dataHandler 数据处理器
+     */
+    public static void generateSeqStr(long startSeq, int seqStrLen,  int num,
+        StringDataHandler dataHandler) {
+        
+        int times = num / CACHE_SIZE;
+        int mod = num % CACHE_SIZE;
+        for (int i = 0; i < times; ++i) {
+            String[] s = generateReqStr(startSeq + i * CACHE_SIZE, seqStrLen, CACHE_SIZE);
+            dataHandler.handle(s);
+        }
+        
+        if(mod != 0){
+            String[] s = generateReqStr(startSeq + times* CACHE_SIZE, seqStrLen, mod);
+            dataHandler.handle(s);
+        }
+    }
+    
+    /**
      * 根据一个指定的序列生成字符串,支持任意长度的字符串.
      * @param seq   序列,  seq >  0
      * @param length 字符串长度,  length > 0 
@@ -146,6 +169,8 @@ public final class StringGenerateUtils {
         }
         return result;
     }
+    
+    
     
     /**
      * 生成一个字符串, 由序列+随机部分组成
