@@ -11,7 +11,6 @@ package org.yy.framework.util.string;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -274,7 +273,7 @@ public final class StringGenerateUtils {
         
         long start1 = new Date().getTime();
         final BufferedWriter w = new BufferedWriter(new FileWriter(f));
-        StringGenerateUtils.generateSeqAndRandomStr(1,10, 3, 100000000, new StringGenerateUtils.StringDataHandler() {
+        /*StringGenerateUtils.generateSeqAndRandomStr(1,10, 3, 100000000, new StringGenerateUtils.StringDataHandler() {
             @Override
             public void handle(String[] data){
                 StringBuilder sb = new StringBuilder();
@@ -293,9 +292,13 @@ public final class StringGenerateUtils {
                     e.printStackTrace();
                 }
             }
-        });
+        });*/
         w.close();
         long end1 = new Date().getTime();
         System.out.println((end1 - start1) / 1000);
+        
+        //long[] a = new long[1000000];
+        
+        //a = null;
     }
 }
