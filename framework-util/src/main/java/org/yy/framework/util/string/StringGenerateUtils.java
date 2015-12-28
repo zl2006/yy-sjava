@@ -21,8 +21,8 @@ import org.yy.framework.util.lang.StringUtils;
 * 字符串生成工具类
 * 
 * @author  zhouliang
-* @version  [版本号, 2015年12月24日]
-* @since  [产品/模块版本]
+ * @version  [1.0, 2015年12月24日]
+ * @since  [framework-util/1.0]
 */
 public final class StringGenerateUtils {
     

@@ -166,7 +166,7 @@ public abstract class StringUtils {
      */
     public static String leftPad(String str, int length, String pad) {
         
-        if (StringUtils.isEmpty(str)) {
+        if (str == null) {
             return str;
         }
         if (str.length() >= length) {
