@@ -10,19 +10,19 @@ import java.net.URL;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.security.SecureRandom;
-import java.security.cert.Certificate;
+//import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
-import java.security.cert.CertificateFactory;
+//import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.util.HashMap;
-import java.util.HashSet;
+//import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.zip.GZIPInputStream;
 
-import javax.naming.ldap.LdapName;
-import javax.naming.ldap.Rdn;
+//import javax.naming.ldap.LdapName;
+//import javax.naming.ldap.Rdn;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
@@ -41,10 +41,10 @@ import org.yy.framework.util.lang.StringUtils;
 public abstract class WebUtils {
 
 	private static final String DEFAULT_CHARSET = Constants.CHARSET_UTF8;
-	private static final Set<String> aliDomains = new HashSet<String>();
+	//private static final Set<String> aliDomains = new HashSet<String>();
 	private static final String METHOD_POST = "POST";
 	private static final String METHOD_GET = "GET";
-	private static final Certificate verisign =  null; // G3根证书
+	//private static final Certificate verisign =  null; // G3根证书
 	private static boolean ignoreSSLCheck; // 忽略SSL检查
 	private static boolean ignoreHostCheck; // 忽略HOST检查
 
