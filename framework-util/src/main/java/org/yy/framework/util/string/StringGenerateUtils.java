@@ -31,6 +31,8 @@ public final class StringGenerateUtils {
 	private static BigDecimal base = new BigDecimal(GenerateConstants.RADIX);
 
 	private static int CACHE_SIZE = 1000; // 缓存大小
+	
+	private StringGenerateUtils(){}
 
 	/**
 	 * 生成一个随机字符串
@@ -314,7 +316,7 @@ public final class StringGenerateUtils {
 		final BufferedWriter w = new BufferedWriter(new FileWriter(f));
 		final NumberGenerateUtils numberUtils = NumberGenerateUtils.getInstance(0, new int[] { 1, 2, 3, 4 },
 				BATCHEACHBIT_GROUP_NUM.FIVE, 10);
-		StringGenerateUtils.generateSeqAndRandomStr(1, 10, 3, 1000000, new StringGenerateUtils.StringDataHandler() {
+		StringGenerateUtils.generateSeqAndRandomStr(1, 10, 3, 10000000, new StringGenerateUtils.StringDataHandler() {
 			@Override
 			public void handle(String[] data) {
 				StringBuilder sb = new StringBuilder();

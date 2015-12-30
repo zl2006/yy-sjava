@@ -20,6 +20,8 @@ import org.yy.framework.util.string.GenerateConstants;
 * @since  [framework-util/1.0]
 */
 public final class RadixUtils {
+	
+	private RadixUtils(){}
     
     /**
      * 把10进制的数字转换成指定进制字符

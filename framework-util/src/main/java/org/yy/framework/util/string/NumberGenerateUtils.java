@@ -68,6 +68,8 @@ public final class NumberGenerateUtils {
 
 	// 分组
 	private char[][] group;
+	
+	private NumberGenerateUtils(){}
 
 	/**
 	 * 获取一个实例, 只要批次重复就会利用旧的实例
