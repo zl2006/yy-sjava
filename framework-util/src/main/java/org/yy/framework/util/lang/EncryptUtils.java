@@ -23,20 +23,9 @@ import org.apache.commons.codec.binary.Base64;
  * @version [1.0, 2015年12月24日]
  * @since [framework-util/1.0]
  */
-public class EncryptUtils {
+public final class EncryptUtils {
 
-	public static void main(String[] args) throws Exception {
-		String content = "我爱你";
-		System.out.println("加密前：" + content);
-
-		String key = "123456";
-		System.out.println("加密密钥和解密密钥：" + key);
-
-		String encrypt = encrypt(content, key, ALGORITHM_TYPE.AES);
-		System.out.println("加密后：" + encrypt);
-
-		String decrypt = decrypt(encrypt, key, ALGORITHM_TYPE.AES);
-		System.out.println("解密后：" + decrypt);
+	private EncryptUtils() {
 	}
 
 	/**
@@ -136,4 +125,17 @@ public class EncryptUtils {
 		}
 	}
 
+	public static void main(String[] args) throws Exception {
+		String content = "我爱你";
+		System.out.println("加密前：" + content);
+
+		String key = "123456";
+		System.out.println("加密密钥和解密密钥：" + key);
+
+		String encrypt = encrypt(content, key, ALGORITHM_TYPE.AES);
+		System.out.println("加密后：" + encrypt);
+
+		String decrypt = decrypt(encrypt, key, ALGORITHM_TYPE.AES);
+		System.out.println("解密后：" + decrypt);
+	}
 }
