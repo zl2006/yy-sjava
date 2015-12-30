@@ -19,6 +19,11 @@
 			<groupId>org.yy.framework</groupId>
 			<artifactId>framework-basedata</artifactId>
 		</dependency>
+		<dependency><!--编码工具类 -->
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+		</dependency>
+
 		<dependency><!-- 日志 -->
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
@@ -28,22 +33,18 @@
 			<artifactId>guava</artifactId>
 			<scope>provider</scope>
 		</dependency>
-		<dependency><!--网络通信-->
-				<groupId>commons-net</groupId>
-				<artifactId>commons-net</artifactId>
-				<scope>provider</scope>
+		<dependency><!--网络通信 -->
+			<groupId>commons-net</groupId>
+			<artifactId>commons-net</artifactId>
+			<scope>provider</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		<!-- 
-		<dependency>
-			<groupId>cn.cocho.java.lib.pinyin4j</groupId>
-			<artifactId>pinyin4j</artifactId>
-			<scope>provider</scope>
-		</dependency> -->
+		<!-- <dependency> <groupId>cn.cocho.java.lib.pinyin4j</groupId> <artifactId>pinyin4j</artifactId> 
+			<scope>provider</scope> </dependency> -->
 
 	</dependencies>
 </project>
