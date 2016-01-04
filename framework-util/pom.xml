@@ -22,12 +22,11 @@
 		<dependency><!--编码工具类 -->
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
-			<scope>provider</scope>
+			<scope>compile</scope>
 		</dependency>
-		<dependency><!--网络通信，ftp，smtp, pop3，telnet,time等 -->
-			<groupId>commons-net</groupId>
-			<artifactId>commons-net</artifactId>
-			<scope>provider</scope>
+		<dependency>
+			<groupId>com.jcraft</groupId>
+			<artifactId>jsch</artifactId>
 		</dependency>
 
 
