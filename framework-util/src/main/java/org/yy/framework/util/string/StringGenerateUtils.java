@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import org.yy.framework.util.lang.EncryptUtils;
+import org.yy.framework.util.lang.EncryptUtils.ALGORITHM_TYPE;
 import org.yy.framework.util.lang.RadixUtils;
 import org.yy.framework.util.lang.StringUtils;
 import org.yy.framework.util.string.NumberGenerateUtils.BATCHEACHBIT_GROUP_NUM;
@@ -31,8 +33,9 @@ public final class StringGenerateUtils {
 	private static BigDecimal base = new BigDecimal(GenerateConstants.RADIX);
 
 	private static int CACHE_SIZE = 1000; // 缓存大小
-	
-	private StringGenerateUtils(){}
+
+	private StringGenerateUtils() {
+	}
 
 	/**
 	 * 生成一个随机字符串
@@ -287,58 +290,79 @@ public final class StringGenerateUtils {
 	}
 
 	public static void main(String[] args) throws Exception {
-		long start = new Date().getTime();
-		/*
-		 * for (int i = 1; i < 100000000; ++i) {
-		 * //StringGenerateUtils.generateRandomStr(12);
-		 * //StringGenerateUtils.generateReqStr(i, 10);
-		 * StringGenerateUtils.generateReqStr(BigDecimal.valueOf(i), 10);
-		 * //System.out.println(StringGenerateUtils.generateRandomStr(12)); }
-		 */
-		StringGenerateUtils.generateReqStr(BigDecimal.valueOf(10000001), 20);
-		long end = new Date().getTime();
-		System.out.println((end - start) / 1000);
 
-		System.out.println(StringGenerateUtils.generateRandomString(12, 20));
-		System.out.println(StringGenerateUtils.generateReqStr(1, 10, 50));
-		System.out.println(StringGenerateUtils.generateReqStr(BigDecimal.ONE, 20, 50));
-		System.out.println(RadixUtils.unconvertBigDecimal("4Q9xANsrU6CIAAAg0000", 64));
+		// 生成一个随机字符串
+		System.out.println("单个随机字符串:" + StringGenerateUtils.generateRandomStr(8));
 
-		System.out.println(StringGenerateUtils.generateReqStr(1, 7));
-		System.out.println(StringGenerateUtils.generateSeqAndRandomStr(1, 7, 5));
+		// 生成 一组随机字符串
+		String[] result = StringGenerateUtils.generateRandomString(8, 9);
+		System.out.println("一组随机字符串:");
+		for (int i = 0; i < result.length; ++i) {
+			System.out.println(result[i]);
+		}
 
+		// 利用数字序列生成一个字符串
+		System.out.println("利用一个long数字生成 一个字符串:" + StringGenerateUtils.generateReqStr(1, 5));
+		System.out.println("利用bigdecimal数字生成一个字符串:"
+				+ StringGenerateUtils.generateReqStr(new BigDecimal("123456789098765432123456"), 15));
+		// 利用数字生成一组字符串
+		result = StringGenerateUtils.generateReqStr(1, 8, 3);
+		System.out.println("利用数字生成一组字符串:");
+		for (int i = 0; i < result.length; ++i) {
+			System.out.println(result[i]);
+		}
+		// 生成一组利用数字和随机数的字符串
+		result = StringGenerateUtils.generateSeqAndRandomStr(1, 8, 0, 3);
+		System.out.println("生成一组利用数字和随机数的字符串:");
+		for (int i = 0; i < result.length; ++i) {
+			System.out.println(result[i]);
+		}
+		// 生成后预处理
+		StringGenerateUtils.generateSeqAndRandomStr(1, 5, 5, 3, new StringDataHandler() {
+			@Override
+			public void handle(String[] data) {
+				for (int i = 0; i < data.length; ++i) {
+					System.out.println("加工后:" + "QR" + data[i]);
+				}
+			}
+		});
+
+		// 综合实例
 		File f = new File("/data/test.txt");
 		if (!f.exists()) {
 			f.createNewFile();
 		}
-
 		long start1 = new Date().getTime();
 		final BufferedWriter w = new BufferedWriter(new FileWriter(f));
+		// 数字码工具类
 		final NumberGenerateUtils numberUtils = NumberGenerateUtils.getInstance(0, new int[] { 1, 2, 3, 4 },
 				BATCHEACHBIT_GROUP_NUM.FIVE, 10);
+		// 二维码工具类，生成1000W码，从数字1开始生成，随机码有3位
 		StringGenerateUtils.generateSeqAndRandomStr(1, 10, 3, 10000000, new StringGenerateUtils.StringDataHandler() {
 			@Override
+
+			// 生成后加工处理
 			public void handle(String[] data) {
+
+				// 数字码切换批次
 				StringBuilder sb = new StringBuilder();
 				String[] number = numberUtils.next(data.length);
 				if (number == null) {
 					numberUtils.switchBatch(numberUtils.currentBatch() + 1);
 					number = numberUtils.next(data.length);
 				}
-
-				for (int i = 0; i < data.length; ++i) {
-					sb.append(data[i]);
-					sb.append(GenerateConstants.FIELD_SEP);
-					sb.append(number[i]);
-					sb.append(GenerateConstants.FIELD_SEP);
-					sb.append("aaa");
-					sb.append(GenerateConstants.FIELD_SEP);
-					sb.append(new Date().getTime());
-					sb.append(GenerateConstants.NEW_LINE);
-				}
+				// 写文件
 				try {
+					for (int i = 0; i < data.length; ++i) {
+
+						sb.append(data[i]);
+						sb.append(EncryptUtils.encrypt(data[i], "password", ALGORITHM_TYPE.DES));
+						sb.append(GenerateConstants.FIELD_SEP);
+						sb.append(number[i]);
+						sb.append(GenerateConstants.NEW_LINE);
+					}
 					w.write(sb.toString());
-				} catch (IOException e) {
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
@@ -347,6 +371,55 @@ public final class StringGenerateUtils {
 		long end1 = new Date().getTime();
 		System.out.println((end1 - start1) / 1000);
 		end1 = 0;
+
+		// long start = new Date().getTime();
+		/*
+		 * for (int i = 1; i < 100000000; ++i) {
+		 * //StringGenerateUtils.generateRandomStr(12);
+		 * //StringGenerateUtils.generateReqStr(i, 10);
+		 * StringGenerateUtils.generateReqStr(BigDecimal.valueOf(i), 10);
+		 * //System.out.println(StringGenerateUtils.generateRandomStr(12)); }
+		 */
+		/*
+		 * StringGenerateUtils.generateReqStr(BigDecimal.valueOf(10000001), 20);
+		 * long end = new Date().getTime(); System.out.println((end - start) /
+		 * 1000);
+		 * 
+		 * System.out.println(StringGenerateUtils.generateRandomString(12, 20));
+		 * System.out.println(StringGenerateUtils.generateReqStr(1, 10, 50));
+		 * System.out.println(StringGenerateUtils.generateReqStr(BigDecimal.ONE,
+		 * 20, 50)); System.out.println(RadixUtils.unconvertBigDecimal(
+		 * "4Q9xANsrU6CIAAAg0000", 64));
+		 * 
+		 * System.out.println(StringGenerateUtils.generateReqStr(1, 7));
+		 * System.out.println(StringGenerateUtils.generateSeqAndRandomStr(1, 7,
+		 * 5));
+		 * 
+		 * File f = new File("/data/test.txt"); if (!f.exists()) {
+		 * f.createNewFile(); }
+		 * 
+		 * long start1 = new Date().getTime(); final BufferedWriter w = new
+		 * BufferedWriter(new FileWriter(f)); final NumberGenerateUtils
+		 * numberUtils = NumberGenerateUtils.getInstance(0, new int[] { 1, 2, 3,
+		 * 4 }, BATCHEACHBIT_GROUP_NUM.FIVE, 10);
+		 * StringGenerateUtils.generateSeqAndRandomStr(1, 10, 3, 10000000, new
+		 * StringGenerateUtils.StringDataHandler() {
+		 * 
+		 * @Override public void handle(String[] data) { StringBuilder sb = new
+		 * StringBuilder(); String[] number = numberUtils.next(data.length); if
+		 * (number == null) { numberUtils.switchBatch(numberUtils.currentBatch()
+		 * + 1); number = numberUtils.next(data.length); }
+		 * 
+		 * for (int i = 0; i < data.length; ++i) { sb.append(data[i]);
+		 * sb.append(GenerateConstants.FIELD_SEP); sb.append(number[i]);
+		 * sb.append(GenerateConstants.FIELD_SEP); sb.append("aaa");
+		 * sb.append(GenerateConstants.FIELD_SEP); sb.append(new
+		 * Date().getTime()); sb.append(GenerateConstants.NEW_LINE); } try {
+		 * w.write(sb.toString()); } catch (IOException e) {
+		 * e.printStackTrace(); } } }); w.close(); long end1 = new
+		 * Date().getTime(); System.out.println((end1 - start1) / 1000); end1 =
+		 * 0;
+		 */
 
 		// long[] a = new long[1000000];
 
