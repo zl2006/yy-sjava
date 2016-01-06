@@ -30,8 +30,7 @@ import com.jcraft.jsch.SftpProgressMonitor;
  */
 public final class SFtpFactoryUtils {
 
-	private static final Logger LOG = LoggerFactory
-			.getLogger(SFtpFactoryUtils.class);
+	private static final Logger LOG = LoggerFactory.getLogger(SFtpFactoryUtils.class);
 
 	/**
 	 * 生产一个channelSftp
@@ -49,9 +48,8 @@ public final class SFtpFactoryUtils {
 	 * @return
 	 * @throws JSchException
 	 */
-	public static ChannelSftp newChannelSftp(String ftpHost, int ftpPort,
-			String ftpUserName, String ftpPassword, int timeout)
-			throws JSchException {
+	public static ChannelSftp newChannelSftp(String ftpHost, int ftpPort, String ftpUserName, String ftpPassword,
+			int timeout) throws JSchException {
 
 		JSch jsch = new JSch(); // 创建JSch对象
 		Session session = jsch.getSession(ftpUserName, ftpHost, ftpPort); // 根据用户名，主机ip，端口获取一个Session对象
@@ -66,9 +64,8 @@ public final class SFtpFactoryUtils {
 		Channel channel = session.openChannel("sftp"); // 打开SFTP通道
 		channel.connect(); // 建立SFTP通道的连接
 		if (LOG.isDebugEnabled()) {
-			LOG.debug("Connected successfully to ftpHost = " + ftpHost
-					+ ",as ftpUserName = " + ftpUserName + ", returning: "
-					+ channel);
+			LOG.debug("Connected successfully to ftpHost = " + ftpHost + ",as ftpUserName = " + ftpUserName
+					+ ", returning: " + channel);
 		}
 		return (ChannelSftp) channel;
 	}
@@ -88,13 +85,11 @@ public final class SFtpFactoryUtils {
 	}
 
 	public static void main(String[] args) throws Exception {
-		ChannelSftp sftpChannel = SFtpFactoryUtils.newChannelSftp(
-				"120.27.133.42", 22, "root", "dic@300047123456", 10000);
-		System.out.println(sftpChannel.pwd());
-		sftpChannel.lcd("/Users/zhouliang/Downloads");
-		sftpChannel
-				.cd("/myws/sftp/mywljcode/.encrypt_code/20151218_50W_950W_1000W");
-		sftpChannel.get("data-1.txt", "data-1.txt", new SftpProgressMonitor() {
+		ChannelSftp sftpChannel = SFtpFactoryUtils.newChannelSftp("120.27.133.42", 22, "mysftp", "dic@300047", 10000);
+		sftpChannel.put("/data/upload.txt", "/myws/sftp/mysftp/upload/upload.tmp");
+		sftpChannel.lcd("/data");
+		sftpChannel.cd("/myws/sftp/mysftp/upload/");
+		sftpChannel.get("upload.tmp", "download.txt", new SftpProgressMonitor() {
 
 			private long transfered;
 
@@ -111,13 +106,10 @@ public final class SFtpFactoryUtils {
 			@Override
 			public boolean count(long count) {
 				transfered = transfered + count;
-				System.out.println("Currently transferred total size: "
-						+ transfered + " bytes");
+				System.out.println("Currently transferred total size: " + transfered + " bytes");
 				return true;
 			}
 		}, ChannelSftp.OVERWRITE);
-		Thread.currentThread().join();
 		SFtpFactoryUtils.closeChannel(sftpChannel);
-
 	}
 }
