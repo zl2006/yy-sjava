@@ -45,9 +45,9 @@ public final class NumberGenerateUtils {
 	// 批次在数据字符串中的位置
 	private int[] fixBatchPosi;
 
-	//原始组
+	// 原始组
 	private BATCHEACHBIT_GROUP_NUM orgiGroupNum;
-	
+
 	// 批次中每位数字可变化的组数
 	private int groupNum;
 
@@ -68,8 +68,9 @@ public final class NumberGenerateUtils {
 
 	// 分组
 	private char[][] group;
-	
-	private NumberGenerateUtils(){}
+
+	private NumberGenerateUtils() {
+	}
 
 	/**
 	 * 获取一个实例, 只要批次重复就会利用旧的实例
@@ -185,7 +186,7 @@ public final class NumberGenerateUtils {
 	 * 切换到下一个批次
 	 */
 	public void switchBatch(int fixBatch) {
-		reset(fixBatch,this. fixBatchPosi, this.orgiGroupNum, this.length);
+		reset(fixBatch, this.fixBatchPosi, this.orgiGroupNum, this.length);
 	}
 
 	/**
@@ -388,13 +389,17 @@ public final class NumberGenerateUtils {
 		// BATCHEACHBIT_GROUP_NUM.FIVE, 10);
 		// NumberGenerateUtils.getInstance(1, new int[] {1, 1, 3},
 		// BATCHEACHBIT_GROUP_NUM.FIVE, 10);
-		NumberGenerateUtils numberUtils = NumberGenerateUtils.getInstance(111, new int[] { 3, 4, 5 },
-				BATCHEACHBIT_GROUP_NUM.FIVE, 5);
-		for (int i = 0; i < 101; ++i) {
+
+		System.out.println("生成长度为4的随机数字，3位为批次, 数字用完后返回null");
+		NumberGenerateUtils numberUtils = NumberGenerateUtils.getInstance(111, new int[] { 1, 3, 4, },
+				BATCHEACHBIT_GROUP_NUM.FIVE, 4);
+		for (int i = 0; i < 11; ++i) {
 			System.out.println(numberUtils.next());
 		}
 
-		//String[] data = numberUtils.next(10);
-		//data = null;
+		numberUtils = NumberGenerateUtils.getInstance(112, new int[] { 1, 2, 3, }, BATCHEACHBIT_GROUP_NUM.FIVE, 13);
+		System.out.println(numberUtils.next());
+		// String[] data = numberUtils.next(10);
+		// data = null;
 	}
 }
