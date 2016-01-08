@@ -370,35 +370,46 @@ public final class NumberGenerateUtils {
 	}
 
 	public static void main(String[] args) {
-		// NumberGenerateUtils.getInstance(-1, new int[] {1, 2, 11},
-		// BATCHEACHBIT_GROUP_NUM.FIVE, 10);
-		// NumberGenerateUtils.getInstance(0, new int[] {1, 2, 3},
-		// BATCHEACHBIT_GROUP_NUM.FIVE, 10);
-		// NumberGenerateUtils.getInstance(124, new int[] {1, 2, 3},
-		// BATCHEACHBIT_GROUP_NUM.FIVE, 10);
-		// NumberGenerateUtils.getInstance(125, new int[] {1, 2, 3},
-		// BATCHEACHBIT_GROUP_NUM.FIVE, 3);
+//		 NumberGenerateUtils.getInstance(-1, new int[] {1, 2, 11},
+//		 BATCHEACHBIT_GROUP_NUM.FIVE, 10);
+//		 NumberGenerateUtils.getInstance(0, new int[] {1, 2, 3},
+//		 BATCHEACHBIT_GROUP_NUM.FIVE, 10);
+//		 NumberGenerateUtils.getInstance(124, new int[] {1, 2, 3},
+//		 BATCHEACHBIT_GROUP_NUM.FIVE, 10);
+//		 NumberGenerateUtils.getInstance(125, new int[] {1, 2, 3},
+//		 BATCHEACHBIT_GROUP_NUM.FIVE, 3);
+//
+//		 NumberGenerateUtils.getInstance(1, new int[] {1, 2, 3,4,5,6},
+//		 BATCHEACHBIT_GROUP_NUM.FIVE, 5);
+//		 NumberGenerateUtils.getInstance(1, new int[] {1, 2, 11},
+//		 BATCHEACHBIT_GROUP_NUM.FIVE, 5);
+//		 NumberGenerateUtils.getInstance(1, new int[] {1, 2, 1},
+//		 BATCHEACHBIT_GROUP_NUM.FIVE, 5);
+//		 NumberGenerateUtils.getInstance(125, new int[] {1, 2, 3},
+//		 BATCHEACHBIT_GROUP_NUM.FIVE, 10);
+//		 NumberGenerateUtils.getInstance(1, new int[] {1, 1, 3},
+//		 BATCHEACHBIT_GROUP_NUM.FIVE, 10);
 
-		// NumberGenerateUtils.getInstance(1, new int[] {1, 2, 3,4,5,6},
-		// BATCHEACHBIT_GROUP_NUM.FIVE, 5);
-		// NumberGenerateUtils.getInstance(1, new int[] {1, 2, 11},
-		// BATCHEACHBIT_GROUP_NUM.FIVE, 5);
-		// NumberGenerateUtils.getInstance(1, new int[] {1, 2, 1},
-		// BATCHEACHBIT_GROUP_NUM.FIVE, 5);
-		// NumberGenerateUtils.getInstance(125, new int[] {1, 2, 3},
-		// BATCHEACHBIT_GROUP_NUM.FIVE, 10);
-		// NumberGenerateUtils.getInstance(1, new int[] {1, 1, 3},
-		// BATCHEACHBIT_GROUP_NUM.FIVE, 10);
-
-		System.out.println("生成长度为4的随机数字，3位为批次, 数字用完后返回null");
-		NumberGenerateUtils numberUtils = NumberGenerateUtils.getInstance(111, new int[] { 1, 3, 4, },
-				BATCHEACHBIT_GROUP_NUM.FIVE, 4);
-		for (int i = 0; i < 11; ++i) {
-			System.out.println(numberUtils.next());
+		NumberGenerateUtils numberUtils = NumberGenerateUtils.getInstance(1, new int[] {3, 6, 9 },
+				BATCHEACHBIT_GROUP_NUM.FIVE, 12);
+		String[] s = numberUtils.next(12);
+		for(int i = 0; i < s.length; ++i){
+			System.out.println(s[i]);
 		}
-
-		numberUtils = NumberGenerateUtils.getInstance(112, new int[] { 1, 2, 3, }, BATCHEACHBIT_GROUP_NUM.FIVE, 13);
-		System.out.println(numberUtils.next());
+		numberUtils.switchBatch(numberUtils.currentBatch() + 1);
+		s = numberUtils.next(12);
+		for(int i = 0; i < s.length; ++i){
+			System.out.println(s[i]);
+		}
+//		System.out.println("生成长度为4的随机数字，3位为批次, 数字用完后返回null");
+//		NumberGenerateUtils numberUtils = NumberGenerateUtils.getInstance(111, new int[] { 1, 3, 4, },
+//				BATCHEACHBIT_GROUP_NUM.FIVE, 4);
+//		for (int i = 0; i < 11; ++i) {
+//			System.out.println(numberUtils.next());
+//		}
+//
+//		numberUtils = NumberGenerateUtils.getInstance(112, new int[] { 1, 2, 3, }, BATCHEACHBIT_GROUP_NUM.FIVE, 13);
+//		System.out.println(numberUtils.next());
 		// String[] data = numberUtils.next(10);
 		// data = null;
 	}

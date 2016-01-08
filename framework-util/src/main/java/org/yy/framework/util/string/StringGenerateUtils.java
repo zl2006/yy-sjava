@@ -292,41 +292,41 @@ public final class StringGenerateUtils {
 	public static void main(String[] args) throws Exception {
 
 		// 生成一个随机字符串
-		System.out.println("单个随机字符串:" + StringGenerateUtils.generateRandomStr(8));
+//		System.out.println("单个随机字符串:" + StringGenerateUtils.generateRandomStr(8));
 
 		// 生成 一组随机字符串
 		String[] result = StringGenerateUtils.generateRandomString(8, 9);
-		System.out.println("一组随机字符串:");
-		for (int i = 0; i < result.length; ++i) {
-			System.out.println(result[i]);
-		}
-
-		// 利用数字序列生成一个字符串
-		System.out.println("利用一个long数字生成 一个字符串:" + StringGenerateUtils.generateReqStr(1, 5));
-		System.out.println("利用bigdecimal数字生成一个字符串:"
-				+ StringGenerateUtils.generateReqStr(new BigDecimal("123456789098765432123456"), 15));
-		// 利用数字生成一组字符串
-		result = StringGenerateUtils.generateReqStr(1, 8, 3);
-		System.out.println("利用数字生成一组字符串:");
-		for (int i = 0; i < result.length; ++i) {
-			System.out.println(result[i]);
-		}
+//		System.out.println("一组随机字符串:");
+//		for (int i = 0; i < result.length; ++i) {
+//			System.out.println(result[i]);
+//		}
+//
+//		// 利用数字序列生成一个字符串
+//		System.out.println("利用一个long数字生成 一个字符串:" + StringGenerateUtils.generateReqStr(1, 5));
+//		System.out.println("利用bigdecimal数字生成一个字符串:"
+//				+ StringGenerateUtils.generateReqStr(new BigDecimal("123456789098765432123456"), 15));
+//		// 利用数字生成一组字符串
+//		result = StringGenerateUtils.generateReqStr(1, 8, 3);
+//		System.out.println("利用数字生成一组字符串:");
+//		for (int i = 0; i < result.length; ++i) {
+//			System.out.println(result[i]);
+//		}
 		// 生成一组利用数字和随机数的字符串
-		result = StringGenerateUtils.generateSeqAndRandomStr(1, 8, 0, 3);
-		System.out.println("生成一组利用数字和随机数的字符串:");
-		for (int i = 0; i < result.length; ++i) {
-			System.out.println(result[i]);
-		}
-		// 生成后预处理
-		StringGenerateUtils.generateSeqAndRandomStr(1, 5, 5, 3, new StringDataHandler() {
-			@Override
-			public void handle(String[] data) {
-				for (int i = 0; i < data.length; ++i) {
-					System.out.println("加工后:" + "QR" + data[i]);
-				}
-			}
-		});
-
+//		result = StringGenerateUtils.generateSeqAndRandomStr(1, 8, 0, 3);
+//		System.out.println("生成一组利用数字和随机数的字符串:");
+//		for (int i = 0; i < result.length; ++i) {
+//			System.out.println(result[i]);
+//		}
+//		// 生成后预处理
+//		StringGenerateUtils.generateSeqAndRandomStr(1, 5, 5, 3, new StringDataHandler() {
+//			@Override
+//			public void handle(String[] data) {
+//				for (int i = 0; i < data.length; ++i) {
+//					System.out.println("加工后:" + "QR" + data[i]);
+//				}
+//			}
+//		});
+//
 		// 综合实例
 		File f = new File("/data/test.txt");
 		if (!f.exists()) {
@@ -337,13 +337,13 @@ public final class StringGenerateUtils {
 		// 数字码工具类
 		final NumberGenerateUtils numberUtils = NumberGenerateUtils.getInstance(0, new int[] { 1, 2, 3, 4 },
 				BATCHEACHBIT_GROUP_NUM.FIVE, 10);
+		
 		// 二维码工具类，生成1000W码，从数字1开始生成，随机码有3位
 		StringGenerateUtils.generateSeqAndRandomStr(1, 10, 3, 10000000, new StringGenerateUtils.StringDataHandler() {
 			@Override
 
 			// 生成后加工处理
 			public void handle(String[] data) {
-
 				// 数字码切换批次
 				StringBuilder sb = new StringBuilder();
 				String[] number = numberUtils.next(data.length);
@@ -354,7 +354,6 @@ public final class StringGenerateUtils {
 				// 写文件
 				try {
 					for (int i = 0; i < data.length; ++i) {
-
 						sb.append(data[i]);
 						sb.append(EncryptUtils.encrypt(data[i], "password", ALGORITHM_TYPE.DES));
 						sb.append(GenerateConstants.FIELD_SEP);
