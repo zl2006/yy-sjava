@@ -10,6 +10,7 @@ package org.yy.framework.util.string;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import org.yy.framework.util.lang.RadixUtils;
@@ -392,15 +393,24 @@ public final class NumberGenerateUtils {
 
 		NumberGenerateUtils numberUtils = NumberGenerateUtils.getInstance(1, new int[] {3, 6, 9 },
 				BATCHEACHBIT_GROUP_NUM.FIVE, 12);
-		String[] s = numberUtils.next(12);
-		for(int i = 0; i < s.length; ++i){
-			System.out.println(s[i]);
+		
+		long s = new Date().getTime();
+		for( int i = 0; i < 10000; ++i){
+			if( numberUtils.next(1000) == null){
+				numberUtils.switchBatch(numberUtils.currentBatch() + 1);
+				numberUtils.next(1000);
+			}
 		}
-		numberUtils.switchBatch(numberUtils.currentBatch() + 1);
-		s = numberUtils.next(12);
-		for(int i = 0; i < s.length; ++i){
-			System.out.println(s[i]);
-		}
+		System.out.println( new Date().getTime() - s);
+//		String[] s = numberUtils.next(12);
+//		for(int i = 0; i < s.length; ++i){
+//			System.out.println(s[i]);
+//		}
+//		numberUtils.switchBatch(numberUtils.currentBatch() + 1);
+//		s = numberUtils.next(12);
+//		for(int i = 0; i < s.length; ++i){
+//			System.out.println(s[i]);
+//		}
 //		System.out.println("生成长度为4的随机数字，3位为批次, 数字用完后返回null");
 //		NumberGenerateUtils numberUtils = NumberGenerateUtils.getInstance(111, new int[] { 1, 3, 4, },
 //				BATCHEACHBIT_GROUP_NUM.FIVE, 4);
