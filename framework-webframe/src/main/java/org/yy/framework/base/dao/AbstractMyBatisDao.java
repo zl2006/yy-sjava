@@ -10,6 +10,8 @@ package org.yy.framework.base.dao;
 import java.sql.Connection;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.apache.ibatis.session.SqlSession;
 import org.yy.framework.basedata.query.AbstractQueryDto;
 import org.yy.framework.basedata.query.ResultDto;
@@ -91,6 +93,7 @@ public abstract class AbstractMyBatisDao {
     /**
     * @param 对sqlSession进行赋值
     */
+    @Resource(name = "sqlSession")
     public void setSqlSession(SqlSession sqlSession) {
         this.sqlSession = sqlSession;
     }

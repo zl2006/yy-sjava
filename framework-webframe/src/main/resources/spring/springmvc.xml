@@ -47,6 +47,8 @@
 			</list>
 		</property>
 	</bean>
+		<!-- fastjson方式 <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"> 
+		</bean> -->
 
 
 	<!-- 5. 根据客户端的不同的请求决定不同的view进行响应, 如 /blog/1.json返回json格式数据 /blog/1.xml返回xml格式数据 
@@ -75,7 +77,7 @@
 					class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 					<property name="viewClass"
 						value="org.springframework.web.servlet.view.JstlView" />
-					<property name="prefix" value="/WEB-INF/jsp/" />
+					<property name="prefix" value="/WEB-INF/pages/" />
 					<property name="suffix" value=".jsp"></property>
 				</bean>
 			</list>
@@ -97,7 +99,7 @@
 	</bean>
 
 
-	<!-- 7.上传拦截，如最大上传值及最小上传值 -->
+	<!-- 6.上传拦截，如最大上传值及最小上传值 -->
 	<bean id="absMultipartResolver" abstract="true">
 		<property name="maxUploadSize" value="100000" /><!-- 设置允许上传的最大文件大小，以字节为单位计算。当设为-1时表示无限制，默认是-1。 -->
 		<property name="defaultEncoding" value="UTF-8"></property>
@@ -105,7 +107,7 @@
 	</bean>
 
 
-	<!-- 8. 国际化资源配置 -->
+	<!-- 7. 国际化资源配置 -->
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<!-- 国际化信息所在的文件名 -->
@@ -114,12 +116,8 @@
 		<property name="useCodeAsDefaultMessage" value="true" />
 	</bean>
 
-	<!-- 9. 页面需要用到的配置 -->
-	<util:map id="pageConfig">
-		<entry key="resources.path" value="${resources.path}"></entry>
-	</util:map>
 
-	<!-- 10. 不包含Spring框 -->
+	<!-- 8. 不包含Spring框 -->
 	<bean id="exceptionResolver" class="org.yy.framework.base.exception.AppExceptionResolver">
 	</bean>
 
