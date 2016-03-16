@@ -4,7 +4,7 @@
 a，配置spring.xml
 <!-- token -->
 	<bean id="tokenStore" class="org.yy.framework.base.token.SessionTokenStore"></bean>
-	<bean id="tokenHandler" class="org.yy.framework.base.token.WebTokenHandler">
+	<bean id="tokenService" class="org.yy.framework.base.token.WebTokenService">
 		<constructor-arg ref="tokenStore"></constructor-arg>
 	</bean>
 	web.xml
