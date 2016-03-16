@@ -107,7 +107,6 @@
 		<dependency><!-- 验证码工具 -->
 			<groupId>com.github.penggle</groupId>
 			<artifactId>kaptcha</artifactId>
-			<scope>provided</scope>
 		</dependency>
 
 

@@ -25,7 +25,7 @@ import javax.validation.ValidatorFactory;
 * @version  [1.0, 2013年12月1日]
 * @since  [framework-webframe/1.0]
 */
-public class ValidateUtil {
+public class ValidateService {
     
     private static Validator validator; // 它是线程安全的 
     

@@ -230,6 +230,20 @@ public abstract class AbstractController {
     }
     
     /**
+     * 校验验证码
+     */
+    public boolean checkKaptcha(HttpServletRequest request, String kaptchaReceived) {
+        //用户输入的验证码的值  
+        String kaptchaExpected =
+            (String)request.getSession().getAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
+        //校验验证码是否正确  
+        if (kaptchaReceived == null || !kaptchaReceived.equals(kaptchaExpected)) {
+            return false;//返回验证码错误  
+        }
+        return true;
+    }
+    
+    /**
      * 处理Spring中的标准异常, DefaultHandlerExceptionResolver
      */
     @ExceptionHandler

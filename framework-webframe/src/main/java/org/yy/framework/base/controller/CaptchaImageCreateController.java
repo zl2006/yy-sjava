@@ -70,7 +70,7 @@ public class CaptchaImageCreateController {
         this.captchaProducer = captchaProducer;
     }
     
-    @RequestMapping("/kaptcha.jpg")
+    @RequestMapping("/kaptcha")
     public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
         throws Exception {
         // Set to expire far in the past.
