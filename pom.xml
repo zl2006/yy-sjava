@@ -20,6 +20,7 @@
 		<module>./framework-cache</module>			<!--缓存-->	
 		<module>./framework-serialization</module>		<!--序列化-->	
 		<module>./framework-service</module>			<!--服务化-->	
+		<module>./framework-service-sample</module>
 	</modules>
-
+	
 </project>
