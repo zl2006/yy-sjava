@@ -9,7 +9,7 @@
 package org.yy.framework.base.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.yy.framework.base.token.TokenHandler;
+import org.yy.framework.base.token.TokenService;
 
 /**
 * 提供token的生成、获取、验证，主要用于防止重复提交
@@ -20,5 +20,5 @@ import org.yy.framework.base.token.TokenHandler;
 public abstract class AbstractTokenController extends AbstractController {
     
     @Autowired
-    protected TokenHandler tokenHandler;
+    protected TokenService tokenService;
 }

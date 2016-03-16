@@ -15,7 +15,7 @@ package org.yy.framework.base.token;
 * @version  [1.0, 2015年4月17日]
 * @since  [framework/1.0]
 */
-public interface TokenHandler {
+public interface TokenService {
     
     /**
      * 生成token

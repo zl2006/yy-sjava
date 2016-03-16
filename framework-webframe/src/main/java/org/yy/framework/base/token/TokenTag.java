@@ -47,10 +47,10 @@ public class TokenTag extends TagSupport {
         
         ApplicationContext ctx =
             WebApplicationContextUtils.getWebApplicationContext(this.pageContext.getServletContext());
-        TokenHandler tokenHandler = ctx.getBean(TokenHandler.class);
+        TokenService tokenService = ctx.getBean(TokenService.class);
         JspWriter out = this.pageContext.getOut();
         try {
-            out.print("<input value=\"" + tokenHandler.generateToken() + "\"  type=\"hidden\" name=\""
+            out.print("<input value=\"" + tokenService.generateToken() + "\"  type=\"hidden\" name=\""
                 + Constants.MVC_TOKEN_KEY + "\" />");
         }
         catch (IOException e) {

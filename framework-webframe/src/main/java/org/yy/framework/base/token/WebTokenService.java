@@ -20,12 +20,12 @@ import org.yy.framework.basedata.Constants;
 * @version  [版本号, 2015年4月17日]
 * @since  [产品/模块版本]
 */
-public class WebTokenHandler implements TokenHandler {
+public class WebTokenService implements TokenService {
     
     //token存储器
     private TokenStore store;
     
-    public WebTokenHandler(TokenStore store) {
+    public WebTokenService(TokenStore store) {
         this.store = store;
     }
     
