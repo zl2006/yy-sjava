@@ -11,7 +11,6 @@ package org.yy.framework.util.string;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -295,7 +294,7 @@ public final class StringGenerateUtils {
 //		System.out.println("单个随机字符串:" + StringGenerateUtils.generateRandomStr(8));
 
 		// 生成 一组随机字符串
-		String[] result = StringGenerateUtils.generateRandomString(8, 9);
+		//String[] result = StringGenerateUtils.generateRandomString(8, 9);
 //		System.out.println("一组随机字符串:");
 //		for (int i = 0; i < result.length; ++i) {
 //			System.out.println(result[i]);
