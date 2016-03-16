@@ -89,7 +89,6 @@ public class CaptchaImageCreateController {
         String capText = captchaProducer.createText();
         
         // store the text in the session
-        //TODO 这块可能要作处理
         request.getSession().setAttribute(Constants.KAPTCHA_SESSION_KEY, capText);
         
         // create the image with the text

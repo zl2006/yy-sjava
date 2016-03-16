@@ -13,6 +13,7 @@ import org.yy.framework.base.token.TokenService;
 
 /**
 * 提供token的生成、获取、验证，主要用于防止重复提交
+* 
 * @author  zhouliang
 * @version  [1.0, 2015年4月17日]
 * @since  [web-framework/1.0]

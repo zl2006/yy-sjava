@@ -17,6 +17,8 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.ConversionNotSupportedException;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -38,13 +40,15 @@ import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMeth
 import static org.yy.framework.basedata.Constants.*;
 
 /**
- * Spring的基础控制器
+ * Spring的基础控制器，提供了验证码校验功能
  * 
  * @author zhouliang
  * @version [1.0, 2013年11月11日]
  * @since [web-framework/1.0]
  */
 public abstract class AbstractController {
+    
+    private static final Logger logger = LoggerFactory.getLogger(AbstractController.class);
     
     /**
      * 模块名称，一般为页面路径，如：/moduleName/add.jsp    , /useradmin/add.jsp
@@ -57,7 +61,7 @@ public abstract class AbstractController {
         setModuleName();
     }
     
-    /**Constants
+    /**
      * 处理返回结果
      * 
      * @param flag
@@ -254,7 +258,20 @@ public abstract class AbstractController {
         String code = ERROR_500_CODE;
         String view = ERROR_500_PAGE;
         String message = "系统错误";
-        String errors = "";
+        String errors = "系统错误";
+        
+        String source = source(request);
+        if (PC_SOURCE.equals(source)) {
+            view = ERROR_500_PAGE;
+        }
+        else if (M_SOURCE.equals(source)) {
+            view = M_ERROR_500_PAGE;
+        }
+        
+        //Step 3:如果为ERROR、WARN、INFO级别时，具体错误消息及错误堆信息不反馈到前台页面
+        if (logger.isErrorEnabled() || logger.isWarnEnabled() || logger.isInfoEnabled()) {
+            return processFailure(code, view, "", message, errors);
+        }
         
         if (ex instanceof NoSuchRequestHandlingMethodException) {
             code = "404";
@@ -317,14 +334,6 @@ public abstract class AbstractController {
         PrintWriter pw = new PrintWriter(sw);
         ex.printStackTrace(pw);
         errors = sw.toString();
-        
-        String source = source(request);
-        if (PC_SOURCE.equals(source)) {
-            view = ERROR_500_PAGE;
-        }
-        else if (M_SOURCE.equals(source)) {
-            view = M_ERROR_500_PAGE;
-        }
         
         return processFailure(code, view, "", message, errors);
     }
