@@ -130,9 +130,10 @@
 		二、使用模板
 		@RequestMapping("/tiles")
 		public String testTiles() {
-			return "jsp/contact";
+			return "tiles/contact";
 		}
 	 -->
+	<!-- 
 	<bean id="tilesConfigurer"
         class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
         <property name="definitions">
@@ -141,4 +142,5 @@
             </list>
         </property>
     </bean>
+     -->
 </beans>
