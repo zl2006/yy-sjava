@@ -111,4 +111,34 @@
 	<bean id="exceptionResolver" class="org.yy.framework.base.exception.AppExceptionResolver">
 	</bean>
 
+	<!-- 8.tiles页面模板配置 -->
+	<!-- 
+		一、模板定义
+		<tiles-definitions>
+		    <definition name="base.definition" template="/templates/layout.jsp">
+		        <put-attribute name="title" value="" type="string" />
+		        <put-attribute name="header" value="/templates/header.jsp" />
+		        <put-attribute name="footer" value="/templates/footer.jsp" />
+		        <put-attribute name="menu" value="/templates/menu.jsp" />
+		        <put-attribute name="body" value="" />
+		    </definition>
+		
+		    <definition name="tiles/*" extends="base.definition">
+		        <put-attribute name="body" value="/{1}.jsp" />
+		    </definition>
+		</tiles-definitions> 
+		二、使用模板
+		@RequestMapping("/tiles")
+		public String testTiles() {
+			return "jsp/contact";
+		}
+	 -->
+	<bean id="tilesConfigurer"
+        class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+        <property name="definitions">
+            <list>
+                <value>/WEB-INF/tiles/tiles-config.xml</value>
+            </list>
+        </property>
+    </bean>
 </beans>
