@@ -20,10 +20,12 @@
 			<artifactId>framework-basedata</artifactId>
 		</dependency>
 
+
 		<!-- 日志配置 -->
 		<dependency>
-			<groupId>org.perf4j</groupId>
+			<groupId>org.perf4j</groupId>	<!-- 性能日志，研发时加入 -->
 			<artifactId>perf4j</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -45,6 +47,8 @@
 			<artifactId>jul-to-slf4j</artifactId>
 		</dependency>
 		<!-- end -->
+
+
 
 		<!-- spring配置, 事务／MVC／ORM／AOP提供 /邮件／缓存／调度等 -->
 		<dependency>
@@ -80,10 +84,11 @@
 			<artifactId>spring-aop</artifactId>
 		</dependency>
 		<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-oxm</artifactId>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-oxm</artifactId>
 		</dependency>
 		<!-- end -->
+
 
 		<!--alibaba自研发连接池, 支持监控 -->
 		<dependency>
@@ -100,6 +105,7 @@
 		</dependency>
 		<!-- end -->
 
+
 		<dependency><!-- 验证 -->
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
@@ -110,11 +116,6 @@
 		</dependency>
 
 
-		<dependency><!-- 缓存 -->
-			<groupId>com.google.code.simple-spring-memcached</groupId>
-			<artifactId>xmemcached-provider</artifactId>
-			<scope>provided</scope>
-		</dependency>
 
 		<!-- json视图工具, 引用framework-webframe时，根据需要自己提供 -->
 		<dependency>
@@ -126,6 +127,8 @@
 			<artifactId>jackson-dataformat-xml</artifactId>
 		</dependency>
 		<!-- end -->
+
+
 
 		<!-- 代理配置 -->
 		<dependency>
@@ -142,6 +145,8 @@
 		</dependency>
 		<!-- end -->
 
+
+
 		<!--工具 -->
 		<dependency><!--文件上传 -->
 			<groupId>commons-fileupload</groupId>
@@ -156,8 +161,8 @@
 			<artifactId>commons-lang3</artifactId>
 		</dependency>
 		<dependency>
-				<groupId>commons-lang</groupId>
-				<artifactId>commons-lang</artifactId>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -171,16 +176,28 @@
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
 		</dependency>
-		<dependency><!--xml操作通信-->
+		<dependency><!--xml操作通信 -->
 			<groupId>com.thoughtworks.xstream</groupId>
 			<artifactId>xstream</artifactId>
 		</dependency>
+
+
 
 		<dependency><!-- velocity 模板引擎 -->
 			<groupId>org.apache.velocity</groupId>
 			<artifactId>velocity</artifactId>
 			<scope>provider</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-jsp</artifactId>
+		</dependency>
+
+
 
 		<!--servlet api配置 -->
 		<dependency>
@@ -189,10 +206,10 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-				<groupId>javax.servlet.jsp</groupId>
-				<artifactId>jsp-api</artifactId>
-				<scope>provided</scope>
-			</dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
@@ -200,18 +217,25 @@
 		</dependency>
 		<!-- end -->
 
+
+
 		<!-- 单元测试 -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<scope>compile</scope>
+			<scope>provided</scope> 
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<scope>compile</scope>
+			<scope>provided</scope>
 		</dependency>
 		<!-- end -->
+ 
+		<dependency>
+			<groupId>com.googlecode.xmemcached</groupId>
+			<artifactId>xmemcached</artifactId>
+		</dependency>
 
 	</dependencies>
 </project>
