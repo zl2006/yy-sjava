@@ -143,4 +143,8 @@
         </property>
     </bean>
      -->
+     
+     
+    <!-- 9. 配置后，不会被springmvc(web.xml中配置的DispatcherServlet)处理 -->
+	<mvc:resources mapping="/resources/**" location="/WEB-INF/resources/" /> 
 </beans>
