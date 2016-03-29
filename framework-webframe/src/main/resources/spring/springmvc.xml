@@ -39,8 +39,13 @@
 	</bean>
 
 	<!-- 4. 处理Controller中使用@RequestBody, @ResponseBody标识数据 -->
+		<!--  a， 完成MessageConverter的注册
+            b， 请求的方法中如果有＠RequestBody，将会采用消息转换器对request.getInputStrem的数据流进行转换
+            c， 请求的方法中如果有@ResponseBody, 将会采用消息转换器把返回结果写入到response.getOutputStrem中-->
 	<bean id="jacksonMessageConverter"
-		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+		class=" org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+		<!-- 解决 HttpMediaTypeNotAcceptableException: Could not find acceptable 
+			representation -->
 		<property name="supportedMediaTypes">
 			<list>
 				<value>text/html;charset=UTF-8</value>
@@ -73,9 +78,10 @@
 		<property name="viewResolvers">
 			<list>
 				<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+				<!--
 				<bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-	           		 <property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
-	        	</bean>
+		           		 <property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
+		        	</bean>-->
 				<bean
 					class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 					<property name="viewClass"
@@ -106,6 +112,7 @@
 	<bean id="absMultipartResolver" abstract="true">
 		<property name="maxUploadSize" value="100000" /><!-- 设置允许上传的最大文件大小，以字节为单位计算。当设为-1时表示无限制，默认是-1。 -->
 		<property name="defaultEncoding" value="UTF-8"></property>
+		<!-- property name="uploadTempDir" value="/home/zhouliang"></property--><!-- 设置上传文件时的临时目录，默认是Servlet容器的临时目录。 -->
 		<property name="maxInMemorySize" value="10240"></property><!--设置在文件上传时允许写到内存中的最大值，以字节为单位计算，默认是10240。 -->
 	</bean>
 
@@ -150,4 +157,27 @@
      
     <!-- 9. 配置后，不会被springmvc(web.xml中配置的DispatcherServlet)处理 -->
 	<mvc:resources mapping="/resources/**" location="/WEB-INF/resources/" /> 
+	
+	
+	
+	<!-- 10. 服务化文档spring配置 -->
+	<!-- 线上环境一般要注释 -->
+	<!-- 
+	<bean id="simpleUrlMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/document.do">document</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="document" class="org.yy.framework.document.controller.DocumentController">
+		<constructor-arg index="0">
+			<list>
+				<value>org.yy.demo.model</value>
+				<value>org.yy.demo.dto</value>
+			</list>
+		</constructor-arg>
+	</bean> -->
+	
 </beans>
