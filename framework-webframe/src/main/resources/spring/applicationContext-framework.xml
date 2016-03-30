@@ -48,6 +48,9 @@
 		<property name="mapperLocations" value="classpath*:sqlmap/sqlmap-mapping*.xml" />
 		<property name="configLocation" value="classpath:sqlmap/ibatis-default-user.xml"></property>
 	</bean>
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="org.yy.qrcodeseller.dao.product" />
+	</bean>
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
 	</bean> -->
@@ -280,6 +283,15 @@
 		<property name="destination" ref="topicDestination" />
 		<property name="messageListener" ref="topicMessageListener" />
 	</bean>-->
+	
+	<!-- 10.Mapper分页拦截机制 -->
+	<!-- 
+	<bean id="pageInterceptor" class="org.yy.qrcodeseller.dao.product.PageInterceptor"></bean>
+	<aop:config proxy-target-class="false">
+		<aop:pointcut id="pagePointCut"
+			expression="execution(* org.yy.qrcodeseller.dao..*(..))" />
+		<aop:advisor advice-ref="pageInterceptor" pointcut-ref="pagePointCut" />
+	</aop:config> -->
 	
 
 
