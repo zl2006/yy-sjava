@@ -27,10 +27,16 @@ import org.yy.framework.basedata.query.ResultDto;
 /**
 * 处理mybatis3中的Mapper形式分页
 * 支持的方法返回类型必须是ResultDto, 参数必须是AbstractQueryDto
-* 
+*    Spring配置
+    <bean id="pageInterceptor" class="org.yy.qrcodeseller.dao.product.PageInterceptor"></bean>
+    <aop:config proxy-target-class="false">
+        <aop:pointcut id="pagePointCut"
+            expression="execution(* org.yy.qrcodeseller.dao..*(..))" />
+        <aop:advisor advice-ref="pageInterceptor" pointcut-ref="pagePointCut" />
+    </aop:config>
      JAVA代码
      public ResultDto<Product> findProductForPage(ProductDto productDto);
-     XML配置
+     mybatis XML配置
      <select id="findProductForPage" resultMap="RM-PRODUCT" parameterType="TA-PRODUCT-DTO">
         <include refid="SQL_SELECT_PRODUCT" /> WHERE 1 = 1
         <include refid="SQL_WHERE_PRODUCT" />
