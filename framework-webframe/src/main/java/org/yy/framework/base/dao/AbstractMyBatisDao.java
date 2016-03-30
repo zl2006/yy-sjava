@@ -26,7 +26,7 @@ import org.yy.framework.basedata.query.ResultDto;
 public abstract class AbstractMyBatisDao {
     
     // 分页时查记录数总和的SQL尾部命名
-    private final String PAGINATION_SQL_SUFFIX = "_PAGE_COUNT";
+    public static final String PAGINATION_SQL_SUFFIX = "_PAGE_COUNT";
     
     //默认版本控制KEY
     public static final String V_KEY = "V";
