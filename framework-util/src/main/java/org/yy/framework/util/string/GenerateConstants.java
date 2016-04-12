@@ -17,6 +17,9 @@ public final class GenerateConstants {
 
 	// 支持最大的进制位
 	public final static int RADIX = 64;
+	
+	//生码进制,如果为64进制，生成的码会有bug
+	public final static int GENERATE_RADIX = 63;
 
 	// 换行符
 	public final static String NEW_LINE = "\r\n";

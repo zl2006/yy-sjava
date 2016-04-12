@@ -29,7 +29,7 @@ import org.yy.framework.util.string.NumberGenerateUtils.BATCHEACHBIT_GROUP_NUM;
  */
 public final class StringGenerateUtils {
 
-	private static BigDecimal base = new BigDecimal(GenerateConstants.RADIX);
+	private static BigDecimal base = new BigDecimal(GenerateConstants.GENERATE_RADIX);
 
 	private static int CACHE_SIZE = 1000; // 缓存大小
 
@@ -46,7 +46,7 @@ public final class StringGenerateUtils {
 		char[] chArray = new char[length];
 		int idx = 0;
 		for (int i = 0; i < length; ++i) {
-			idx = (int) (Math.random() * GenerateConstants.RADIX);
+			idx = (int) (Math.random() * GenerateConstants.GENERATE_RADIX);
 			chArray[i] = GenerateConstants.RADIX_STR[idx];
 		}
 		return String.valueOf(chArray);
@@ -86,19 +86,19 @@ public final class StringGenerateUtils {
 		}
 
 		// Step 1: 根据字符串的长度，确认其对应的最大十进制数为多少位,减1防止生成的字符串超出长度
-		int maxTenRadixNumLen = ("" + (long) Math.pow(GenerateConstants.RADIX, length)).length() - 1;
+		int maxTenRadixNumLen = ("" + (long) Math.pow(GenerateConstants.GENERATE_RADIX, length)).length() - 1;
 
 		// Step 2: 将提供的数字填充后反转，例如1，填充后为000000001，然后反转为100000000
 		String temp = "" + seq;
 		temp = StringUtils.leftPad(temp, maxTenRadixNumLen, "0");
 		temp = new StringBuilder(temp).reverse().toString();
 
-		// Step3:转换成64进制
-		String hex64 = RadixUtils.convertNumber(Long.parseLong(temp), GenerateConstants.RADIX);
-		hex64 = StringUtils.leftPad(hex64, length, "0");
+		// Step3:转换成63进制
+		String hex63 = RadixUtils.convertNumber(Long.parseLong(temp), GenerateConstants.GENERATE_RADIX);
+		hex63 = StringUtils.leftPad(hex63, length, "0");
 
 		// Step 4:使用加密表加密
-		return encryptStr(hex64);
+		return encryptStr(hex63);
 	}
 
 	/**
@@ -171,12 +171,12 @@ public final class StringGenerateUtils {
 		temp = StringUtils.leftPad(temp, maxTenRadixNumLen, "0");
 		temp = new StringBuilder(temp).reverse().toString();
 
-		// Step 3:转换成64进制
-		String hex64 = RadixUtils.convertBigDecimal(temp, GenerateConstants.RADIX);
-		hex64 = StringUtils.leftPad(hex64, length, "0");
+		// Step 3:转换成63进制
+		String hex63 = RadixUtils.convertBigDecimal(temp, GenerateConstants.GENERATE_RADIX);
+		hex63 = StringUtils.leftPad(hex63, length, "0");
 
 		// Step 4:使用加密表加密
-		return encryptStr(hex64);
+		return encryptStr(hex63);
 	}
 
 	/**
@@ -327,7 +327,7 @@ public final class StringGenerateUtils {
 //		});
 //
 		// 综合实例
-		File f = new File("/data/test.txt");
+		File f = new File("/Volumes/workspace/test.txt");
 		if (!f.exists()) {
 			f.createNewFile();
 		}
@@ -338,7 +338,7 @@ public final class StringGenerateUtils {
 				BATCHEACHBIT_GROUP_NUM.FIVE, 10);
 		
 		// 二维码工具类，生成1000W码，从数字1开始生成，随机码有3位
-		StringGenerateUtils.generateSeqAndRandomStr(1, 10, 3, 10000000, new StringGenerateUtils.StringDataHandler() {
+		StringGenerateUtils.generateSeqAndRandomStr(20000, 7, 3, 10000000, new StringGenerateUtils.StringDataHandler() {
 			@Override
 
 			// 生成后加工处理
@@ -353,6 +353,7 @@ public final class StringGenerateUtils {
 				// 写文件
 				try {
 					for (int i = 0; i < data.length; ++i) {
+					    //System.out.println(data[i]);
 						sb.append(data[i]);
 						sb.append(EncryptUtils.encrypt(data[i], "password", ALGORITHM_TYPE.DES));
 						sb.append(GenerateConstants.FIELD_SEP);
